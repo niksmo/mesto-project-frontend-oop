@@ -24,3 +24,4 @@
 @import url(../blocks/place-card/__form/place-card__form.css);
 @import url(../blocks/place-card/__form-item/place-card__form-item.css);
 @import url(../blocks/place-card/__form-item/_el/place-card__form-item_el_like.css);
+@import url(../blocks/place-card/__form-custom-like/place-card__form-custom-like.css);
