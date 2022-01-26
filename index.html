@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./pages/index.css">
+    <title>Mesto</title>
+</head>
+<body class="page">
+    <header class="header">
+        <img src="./images/logo-white.svg" alt="логотип место россия" class="logo">
+    </header>
+    <main class="content">
+        <section class="profile">
+            <div class="profile__avatar-wrapper">
+                <img src="./images/avatar-image.jpg" alt="аватар" class="profile__avatar-image">
+            </div>
+            <div class="profile__info">
+                    <h1 class="profile__name" aria-label="имя пользователя">Жак-Ив Кусто</h1>
+                    <button class="button-edit" type="button">
+                        <img src="./images/edit-button-24.svg" alt="редактировать" class="button-edit__icon">
+                    </button>
+                <p class="profile__obout-myself">Исследователь океана</p>
+            </div>
+            <button class="button-add"><img src="./images/icon-add.svg" alt="добавить" class="button-add__image"></button>
+        </section>
+        <section class="places">
+            <ul class="places-gallery">
+                <li class="places-gallery_item">
+                    <article class="place-card">
+                        <img src="./images/antarktida.jpg" alt="антарктида" class="place-card__image">
+                        <div class="place-card__cell">
+                            <h2 class="place-card__title">Антарктида</h2>
+                            <form class="place-card__form">
+                                <input class="place-card__form-item place-card__form-item_el_like" type="checkbox" name="like" id="like" value="yes">
+                            </form>
+                        </div>
+                    </article>
+                </li>
+                
+            </ul>
+        </section>
+    </main>
+    <footer class="footer"></footer>
+</body>
+</html>

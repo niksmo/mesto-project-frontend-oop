@@ -1,0 +1,10 @@
+.button-edit__icon {
+    width: 18px;
+}
+
+@media (min-width: 768px) {
+    .button-edit__icon {
+        width: 24px;
+        height: 24px;
+    }
+}

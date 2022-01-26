@@ -1,0 +1,15 @@
+.profile__obout-myself {
+    margin: 14px 0 0;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    grid-area: about;
+}
+
+@media (min-width: 768px) {
+    .profile__obout-myself {
+        margin-top: 16px;
+        font-size: 18px;
+        line-height: 22px;
+    }
+}

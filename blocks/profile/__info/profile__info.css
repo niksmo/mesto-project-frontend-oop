@@ -1,0 +1,19 @@
+.profile__info {
+    margin-bottom: 36px;
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 10px;
+    grid-template-rows: repeat(2, auto);
+    align-items: baseline;
+    justify-items: center;
+    grid-template-areas: 
+        "name edit"
+        "about about";
+}
+
+@media (min-width: 667px) {
+    .profile__info {
+        margin-bottom: 0;
+        justify-items: start;
+    }
+}

@@ -1,0 +1,7 @@
+.button-edit {
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    line-height: 0;
+    grid-area: edit;
+}
