@@ -8,7 +8,7 @@
 </head>
 <body class="page">
     <header class="header">
-        <img src="./images/logo-white.svg" alt="логотип место россия" class="logo">
+        <img src="./images/logo-white.svg" alt="логотип в шапке страницы" class="logo">
     </header>
     <main class="content">
         <section class="profile">
@@ -16,34 +16,105 @@
                 <img src="./images/avatar-image.jpg" alt="аватар" class="profile__avatar-image">
             </div>
             <div class="profile__info">
-                    <h1 class="profile__name" aria-label="имя пользователя">Жак-Ив Кусто</h1>
+                    <h1 class="profile__name" aria-label="имя профиля">Жак-Ив Кусто</h1>
                     <button class="button-edit" type="button">
-                        <img src="./images/edit-button-24.svg" alt="редактировать" class="button-edit__icon">
+                        <img src="./images/edit-button-24.svg" alt="редактировать профиль" class="button-edit__icon">
                     </button>
                 <p class="profile__obout-myself">Исследователь океана</p>
             </div>
             <button class="button-add"><img src="./images/icon-add.svg" alt="добавить" class="button-add__image"></button>
         </section>
         <section class="places">
-            <ul class="places-gallery">
-                <li class="places-gallery_item">
-                    <article class="place-card">
-                        <img src="./images/antarktida.jpg" alt="антарктида" class="place-card__image">
+            <ul class="gallery">
+                <li class="gallery__item">
+                    <article class="place-card" aria-label="Карточка с фотографией">
+                        <img src="./images/antarktida.jpg" alt="Антарктида" class="place-card__image">
                         <div class="place-card__cell">
                             <h2 class="place-card__title">Антарктида</h2>
                             <form class="place-card__form">
                                 <label>
-                                    <input class="place-card__form-item place-card__form-item_el_like" type="checkbox" name="like" id="like" value="yes">
+                                    <input class="place-card__form-item place-card__form-item_el_like" type="checkbox" name="like" id="like" value="yes" aria-label="поставить лайк">
                                     <span class="place-card__form-custom-like"></span>
                                 </label>
                             </form>
                         </div>
                     </article>
                 </li>
-                
+                <li class="gallery__item">
+                    <article class="place-card" aria-label="Карточка с фотографией">
+                        <img src="./images/beliz.jpg" alt="Белиз" class="place-card__image">
+                        <div class="place-card__cell">
+                            <h2 class="place-card__title">Белиз</h2>
+                            <form class="place-card__form">
+                                <label>
+                                    <input class="place-card__form-item place-card__form-item_el_like" type="checkbox" name="like" id="like" value="yes" aria-label="поставить лайк">
+                                    <span class="place-card__form-custom-like"></span>
+                                </label>
+                            </form>
+                        </div>
+                    </article>
+                </li>
+                <li class="gallery__item">
+                    <article class="place-card" aria-label="Карточка с фотографией">
+                        <img src="./images/madagaskar.jpg" alt="Мадагаскар" class="place-card__image">
+                        <div class="place-card__cell">
+                            <h2 class="place-card__title">Мадагаскар</h2>
+                            <form class="place-card__form">
+                                <label>
+                                    <input class="place-card__form-item place-card__form-item_el_like" type="checkbox" name="like" id="like" value="yes" aria-label="поставить лайк">
+                                    <span class="place-card__form-custom-like"></span>
+                                </label>
+                            </form>
+                        </div>
+                    </article>
+                </li>
+                <li class="gallery__item">
+                    <article class="place-card" aria-label="Карточка с фотографией">
+                        <img src="./images/kliperton.jpg" alt="остров Клипертон" class="place-card__image">
+                        <div class="place-card__cell">
+                            <h2 class="place-card__title">остров Клипертон</h2>
+                            <form class="place-card__form">
+                                <label>
+                                    <input class="place-card__form-item place-card__form-item_el_like" type="checkbox" name="like" id="like" value="yes" aria-label="поставить лайк">
+                                    <span class="place-card__form-custom-like"></span>
+                                </label>
+                            </form>
+                        </div>
+                    </article>
+                </li>
+                <li class="gallery__item">
+                    <article class="place-card" aria-label="Карточка с фотографией">
+                        <img src="./images/avstralia.jpg" alt="Австралия" class="place-card__image">
+                        <div class="place-card__cell">
+                            <h2 class="place-card__title">Австралия</h2>
+                            <form class="place-card__form">
+                                <label>
+                                    <input class="place-card__form-item place-card__form-item_el_like" type="checkbox" name="like" id="like" value="yes" aria-label="поставить лайк">
+                                    <span class="place-card__form-custom-like"></span>
+                                </label>
+                            </form>
+                        </div>
+                    </article>
+                </li>
+                <li class="gallery__item">
+                    <article class="place-card" aria-label="Карточка с фотографией">
+                        <img src="./images/amazonka.jpg" alt="Амазонка" class="place-card__image">
+                        <div class="place-card__cell">
+                            <h2 class="place-card__title">Амазонка</h2>
+                            <form class="place-card__form">
+                                <label>
+                                    <input class="place-card__form-item place-card__form-item_el_like" type="checkbox" name="like" id="like" value="yes" aria-label="поставить лайк">
+                                    <span class="place-card__form-custom-like"></span>
+                                </label>
+                            </form>
+                        </div>
+                    </article>
+                </li>
             </ul>
         </section>
     </main>
-    <footer class="footer"></footer>
+    <footer class="footer">
+        <p class="footer__copyright">&copy;&nbsp;2020 Mesto Russia</p>
+    </footer>
 </body>
 </html>

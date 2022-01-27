@@ -7,3 +7,11 @@
         padding-top: 40px;
     }
 }
+
+@media (min-width: 934px) {
+    .content {
+        padding-left: 0;
+        padding-right: 0;
+        padding-bottom: 66px;
+    }
+}

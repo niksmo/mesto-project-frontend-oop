@@ -15,8 +15,8 @@
 @import url(../blocks/button-add/button-add.css);
 @import url(../blocks/button-add/__image/button-add__image.css);
 @import url(../blocks/places/places.css);
-@import url(../blocks/places-gallery/places-gallery.css);
-@import url(../blocks/places-gallery/__item/places-gallery_item.css);
+@import url(../blocks/gallery/gallery.css);
+@import url(../blocks/gallery/__item/gallery__item.css);
 @import url(../blocks/place-card/place-card.css);
 @import url(../blocks/place-card/__image/place-card__image.css);
 @import url(../blocks/place-card/__cell/place-card__cell.css);
@@ -25,3 +25,4 @@
 @import url(../blocks/place-card/__form-item/place-card__form-item.css);
 @import url(../blocks/place-card/__form-item/_el/place-card__form-item_el_like.css);
 @import url(../blocks/place-card/__form-custom-like/place-card__form-custom-like.css);
+@import url(../blocks/footer/__copyright/footer__copyright.css);

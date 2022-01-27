@@ -1,5 +1,6 @@
 .button-add {
     width: 100%;
+    max-width: 376px;
     padding: 0;
     height: 50px;
     border: 2px solid #FFFFFF;

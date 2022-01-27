@@ -3,6 +3,7 @@
     vertical-align: middle;
     width: 22px;
     height: 19px;
+    cursor: pointer;
     background-image: url(../../../images/like-disabled.svg);
 }
 

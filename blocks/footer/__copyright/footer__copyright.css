@@ -1,0 +1,24 @@
+.footer__copyright {
+    margin: 0 19px 36px;
+    color: rgba(84, 84, 84, 1);
+    font-size: 18px;
+    line-height: 22px;
+
+    font-size: 14px;
+    line-height: 17px;
+}
+
+@media (min-width: 768px) {
+    .footer__copyright {
+        margin-bottom: 60px;
+        font-size: 18px;
+        line-height: 22px;
+    }
+}
+
+@media (min-width: 934px) {
+    .footer__copyright {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
