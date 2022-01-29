@@ -1,16 +1,14 @@
 .profile {
-    display: grid;
-    grid-template-columns: 100%;
-    justify-items: center;
+  display: grid;
+  grid-template-columns: auto;
+  justify-items: center;
 }
 
 @media (min-width: 667px) {
-    .profile {
-        display: grid;
-        grid-template-columns: 120px 1fr 150px;
-        column-gap: 30px;
-        grid-template-rows: auto;
-        justify-items: start;
-        align-items: center;
-    }
+  .profile {
+    grid-template-columns: 120px 1fr 150px;
+    column-gap: 30px;
+    align-items: center;
+    justify-items: start;
+  }
 }

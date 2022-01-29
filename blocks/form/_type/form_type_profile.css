@@ -1,0 +1,4 @@
+.form_type_profile {
+  display: flex;
+  flex-direction: column;
+}

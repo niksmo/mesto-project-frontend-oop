@@ -1,15 +1,19 @@
 .profile__obout-myself {
-    margin: 14px 0 0;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 17px;
-    grid-area: about;
+  margin: 6px 0 0;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  grid-area: about;
+  max-width: 100%;
 }
 
-@media (min-width: 768px) {
-    .profile__obout-myself {
-        margin-top: 16px;
-        font-size: 18px;
-        line-height: 22px;
-    }
+@media (min-width: 667px) {
+  .profile__obout-myself {
+    margin-top: 16px;
+    font-size: 18px;
+    line-height: 22px;
+  }
 }
