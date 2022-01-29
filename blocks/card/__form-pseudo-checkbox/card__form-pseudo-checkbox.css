@@ -1,0 +1,25 @@
+.card__form-pseudo-checkbox {
+  display: inline-block;
+  vertical-align: middle;
+  width: 22px;
+  height: 19px;
+  cursor: pointer;
+  background-image: url(../../../images/like-disabled.svg);
+  transition: opacity .11s linear;
+}
+
+.card__form-checkbox:checked + .card__form-pseudo-checkbox {
+  background-image: url(../../../images/like-active.svg);
+}
+
+.card__form-checkbox:focus-visible + .card__form-pseudo-checkbox {
+  box-shadow: 0 0 0 2px #0066ff;
+}
+
+.card__form-pseudo-checkbox:hover {
+  opacity: .5;
+}
+
+.card__form-checkbox:checked:hover + .card__form-pseudo-checkbox {
+  opacity: 1;
+}

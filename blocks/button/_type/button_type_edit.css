@@ -1,0 +1,16 @@
+.button_type_edit {
+  width: 18px;
+  height: 18px;
+  transition: opacity .11s linear;
+}
+
+.button_type_edit:hover {
+  opacity: .6;
+}
+
+@media (min-width: 768px) {
+  .button_type_edit {
+    width: 24px;
+    height: 24px;
+  }
+}
