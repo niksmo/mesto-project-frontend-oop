@@ -1,5 +1,10 @@
 .form__btn_type_close {
   margin: 0;
+  background-image: url(../../../../images/close-icon.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 20px;
+  height: 20px;
   position: absolute;
   top: -16px;
   right: 0;
@@ -17,5 +22,12 @@
     top: -8px;
     right: -8px;
     transform: translate(100%, -100%);
+  }
+}
+
+@media (min-width: 768px) {
+  .form__btn_type_close {
+    width: 32px;
+    height: 32px;
   }
 }
