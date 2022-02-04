@@ -22,8 +22,8 @@
 @import url(../blocks/card/__image/card__image.css);
 @import url(../blocks/card/__cell/card__cell.css);
 @import url(../blocks/card/__title/card__title.css);
-@import url(../blocks/card/__form-checkbox/card__form-checkbox.css);
-@import url(../blocks/card/__form-pseudo-checkbox/card__form-pseudo-checkbox.css);
+@import url(../blocks/card/__checkbox/card__checkbox.css);
+@import url(../blocks/card/__pseudo-checkbox/card__pseudo-checkbox.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/_opened/popup_opened.css);

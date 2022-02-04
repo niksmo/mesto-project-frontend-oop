@@ -1,4 +1,4 @@
-.card__form-pseudo-checkbox {
+.card__pseudo-checkbox {
   display: inline-block;
   vertical-align: middle;
   width: 22px;
@@ -8,18 +8,18 @@
   transition: opacity .11s linear;
 }
 
-.card__form-checkbox:checked + .card__form-pseudo-checkbox {
+.card__checkbox:checked + .card__pseudo-checkbox {
   background-image: url(../../../images/like-active.svg);
 }
 
-.card__form-checkbox:focus-visible + .card__form-pseudo-checkbox {
+.card__checkbox:focus-visible + .card__pseudo-checkbox {
   box-shadow: 0 0 0 2px #0066ff;
 }
 
-.card__form-pseudo-checkbox:hover {
+.card__pseudo-checkbox:hover {
   opacity: .5;
 }
 
-.card__form-checkbox:checked:hover + .card__form-pseudo-checkbox {
+.card__checkbox:checked:hover + .card__pseudo-checkbox {
   opacity: 1;
 }
