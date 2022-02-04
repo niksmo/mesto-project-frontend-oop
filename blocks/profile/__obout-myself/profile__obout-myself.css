@@ -13,6 +13,11 @@
 @media (min-width: 667px) {
   .profile__obout-myself {
     margin-top: 16px;
+  }
+}
+
+@media (min-width: 768px) {
+  .profile__obout-myself {
     font-size: 18px;
     line-height: 22px;
   }
