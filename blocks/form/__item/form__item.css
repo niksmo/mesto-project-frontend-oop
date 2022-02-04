@@ -12,3 +12,8 @@
 .form__item:first-of-type {
   margin-top: 0;
 }
+
+.form__item:focus {
+  outline: 1px blue solid;
+  outline-offset: 5px;
+}
