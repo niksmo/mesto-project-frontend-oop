@@ -10,7 +10,7 @@
 
 .card__checkbox:checked + .card__pseudo-checkbox {
   background-image: url(../../../images/like-active.svg);
-}
+} /* как это сделать с модификатором active не понятно */
 
 .card__checkbox:focus-visible + .card__pseudo-checkbox {
   box-shadow: 0 0 0 2px #0066ff;
