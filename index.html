@@ -12,16 +12,14 @@
   </header>
   <main class="content">
     <section class="profile">
-      <div class="profile__avatar-wrapper">
-        <img src="./images/avatar-image.jpg" alt="аватар" class="profile__avatar-image">
-      </div>
+      <img src="./images/avatar-image.jpg" alt="аватар" class="profile__avatar-image">
       <div class="profile__info">
         <h1 class="profile__name">Жак-Ив Кусто</h1>
         <p class="profile__obout-myself">Исследователь океана</p>
         <button class="button button_type_edit button_icon_edit profile__button" type="button" aria-label="редактировать">
         </button>
       </div>
-      <button class="button button_type_add button_icon_add" aria-label="добавить"></button>
+      <button class="button button_type_add button_icon_add" type="button" aria-label="добавить"></button>
     </section>
     <section class="places">
       <ul class="gallery">
@@ -111,7 +109,7 @@
         </li>
       </ul>
     </section>
-    <div class="popup popup_opened">
+    <div class="popup popup_opened!">
       <div class="popup__container">
         <form class="form form_type_profile">
           <h2 class="form__heading">Редактировать профиль</h2>

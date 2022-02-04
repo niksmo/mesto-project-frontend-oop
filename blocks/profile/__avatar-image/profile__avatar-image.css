@@ -1,3 +1,12 @@
 .profile__avatar-image {
-  max-width: 100%;
+  margin-bottom: 26px;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+}
+
+@media (min-width: 667px) {
+  .profile__avatar-image {
+    margin-bottom: 0;
+  }
 }
