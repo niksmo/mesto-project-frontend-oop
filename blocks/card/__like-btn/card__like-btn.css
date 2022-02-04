@@ -10,6 +10,7 @@
   height: 19px;
   transition: opacity .11s linear;
   color: inherit;
+  flex-shrink: 0;
 }
 
 .card__like-btn:hover {
