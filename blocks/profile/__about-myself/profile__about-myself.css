@@ -1,4 +1,4 @@
-.profile__obout-myself {
+.profile__about-myself {
   margin: 6px 0 0;
   font-weight: 400;
   font-size: 14px;
@@ -11,13 +11,13 @@
 }
 
 @media (min-width: 667px) {
-  .profile__obout-myself {
+  .profile__about-myself {
     margin-top: 16px;
   }
 }
 
 @media (min-width: 768px) {
-  .profile__obout-myself {
+  .profile__about-myself {
     font-size: 18px;
     line-height: 22px;
   }
