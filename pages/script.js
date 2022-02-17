@@ -1,38 +1,45 @@
-let page = document.querySelector('.page');
+const page = document.querySelector('.page');
 
-let content = page.querySelector('.content');
+const content = page.querySelector('.content');
 
-let buttonProfile = content.querySelector('.button_type_edit');
+const buttonProfile = content.querySelector('.button_type_edit');
 
-let popup = page.querySelector('.popup');
+const popup = page.querySelector('.popup');
 
-let buttonCloseProfile = page.querySelector('.form__btn_type_close');
+const buttonCloseProfile = page.querySelector('.form__btn_type_close');
 
-let profileName = content.querySelector('.profile__name');
+const formProfile = popup.querySelector('.form_type_profile');
 
-let profileMyself = content.querySelector('.profile__about-myself');
+const profileName = content.querySelector('.profile__name');
 
-function editProfile() {
+const profileMyself = content.querySelector('.profile__about-myself');
+
+
+function openPopup() {
   popup.classList.add('popup_opened')
 }
 
-function closeProfile() {
+function closePopup() {
   popup.classList.remove('popup_opened')
 }
 
-let formProfile = popup.querySelector('.form_type_profile');
+//Открывает форму редактирования профиля
+buttonProfile.addEventListener('click', () => {
+  const nameInput = formProfile.querySelector('.form__item_el_name');
+  const myselfInput = formProfile.querySelector('.form__item_el_myself');
+  nameInput.value = profileName.textContent;
+  myselfInput.value = profileMyself.textContent;
+  openPopup()
+});
 
-function saveProfile (evt) {
+//Сохраняет данные в профиль
+formProfile.addEventListener('submit', (evt) => {
   evt.preventDefault();
-  let nameInput = popup.querySelector('.form__item_el_name');
-  let myselfInput = popup.querySelector('.form__item_el_myself');
-  profileName.textContent = `${nameInput.value}`;
-  profileMyself.textContent = `${myselfInput.value}`;
-  closeProfile();
-}
+  const nameInput = formProfile.querySelector('.form__item_el_name');
+  const myselfInput = formProfile.querySelector('.form__item_el_myself');
+  profileName.textContent = nameInput.value;
+  profileMyself.textContent = myselfInput.value;
+  closePopup();
+});
 
-formProfile.addEventListener('submit', saveProfile);
-
-buttonProfile.addEventListener('click', editProfile);
-
-buttonCloseProfile.addEventListener('click', closeProfile);
+buttonCloseProfile.addEventListener('click', closePopup);
