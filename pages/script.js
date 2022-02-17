@@ -60,17 +60,66 @@ initialCards.forEach(function (object) {
 
 //------попап и редактирование профиля
 
+function createForm (formName, title, inputName, inputNamePlaceholder, inputElse, inputElsePlaceholder, buttonText) {
+  const templateForm = document.querySelector('#form').content;
+  const popupContainer = document.querySelector('.popup__container');
+  const form = templateForm.querySelector('.form').cloneNode(true);
+  const formTitle = form.querySelector('.form__heading');
+  const formItems = form.querySelectorAll('.form__item');
+  const formButton = form.querySelector('.form__btn_type_save');
+  form.classList.add(`form_type_${formName}`);
+  form.name = formName;
+  formTitle.textContent = title;
+  formItems[0].classList.add(`form__item_el_${inputName}`);
+  formItems[0].name = inputName;
+  formItems[0].placeholder = inputNamePlaceholder;
+  formItems[1].classList.add(`form__item_el_${inputElse}`);
+  formItems[1].name = inputElse;
+  formItems[1].name = inputElsePlaceholder;
+  formButton.textContent = buttonText
+  popupContainer.append(form);
+}
+
 const buttonProfile = content.querySelector('.button_type_edit');
+
+const profileName = content.querySelector('.profile__name');
+
+const profileMyself = content.querySelector('.profile__about-myself');
+
+//открываем форму редактирования профиля
+buttonProfile.addEventListener('click', () => {
+  if (!page.querySelector('.form_type_profile')) {
+    createForm ('profile', 'Редактировать профиль', 'name', 'Имя', 'myself', 'О себе', 'Сохранить');
+    
+    const formProfile = page.querySelector('.form_type_profile');
+    const buttonCloseProfile = page.querySelector('.form__btn_type_close');
+    formProfile.addEventListener('submit', (evt) => {
+      evt.preventDefault();
+      const nameInput = formProfile.querySelector('.form__item_el_name');
+      const myselfInput = formProfile.querySelector('.form__item_el_myself');
+      profileName.textContent = nameInput.value;
+      profileMyself.textContent = myselfInput.value;
+      closePopup();
+    });
+    
+    buttonCloseProfile.addEventListener('click', closePopup);
+  };
+  const nameInput = page.querySelector('.form__item_el_name');
+  const myselfInput = page.querySelector('.form__item_el_myself');
+  nameInput.value = profileName.textContent;
+  myselfInput.value = profileMyself.textContent;
+  openPopup()
+});
+
+//навести порядок>>>>>>>
+
 
 const popup = page.querySelector('.popup');
 
 const buttonCloseProfile = page.querySelector('.form__btn_type_close');
 
-const formProfile = popup.querySelector('.form_type_profile');
+const formProfile = page.querySelector('.form_type_profile');
 
-const profileName = content.querySelector('.profile__name');
-
-const profileMyself = content.querySelector('.profile__about-myself');
 
 function openPopup() {
   popup.classList.add('popup_opened')
@@ -80,23 +129,23 @@ function closePopup() {
   popup.classList.remove('popup_opened')
 };
 
-//открываем форму редактирования профиля
+/*//открываем форму редактирования профиля
 buttonProfile.addEventListener('click', () => {
   const nameInput = formProfile.querySelector('.form__item_el_name');
   const myselfInput = formProfile.querySelector('.form__item_el_myself');
   nameInput.value = profileName.textContent;
   myselfInput.value = profileMyself.textContent;
   openPopup()
-});
+});*/
 
 //сохраняем данные в профиль
-formProfile.addEventListener('submit', (evt) => {
-  evt.preventDefault();
-  const nameInput = formProfile.querySelector('.form__item_el_name');
-  const myselfInput = formProfile.querySelector('.form__item_el_myself');
-  profileName.textContent = nameInput.value;
-  profileMyself.textContent = myselfInput.value;
-  closePopup();
-});
+// formProfile.addEventListener('submit', (evt) => {
+//   evt.preventDefault();
+//   const nameInput = formProfile.querySelector('.form__item_el_name');
+//   const myselfInput = formProfile.querySelector('.form__item_el_myself');
+//   profileName.textContent = nameInput.value;
+//   profileMyself.textContent = myselfInput.value;
+//   closePopup();
+// });
 
-buttonCloseProfile.addEventListener('click', closePopup);
+// buttonCloseProfile.addEventListener('click', closePopup);
