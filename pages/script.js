@@ -3,9 +3,9 @@ const page = document.querySelector('.page');
 const content = page.querySelector('.content');
 
 
-//------добавляем 6 карточек и массива на страницу-------
+//------добавляем 6 карточек из массива на страницу при загрузке-------
 
-//массив загружаемых карточек при открытии страницы
+//карточки
 const initialCards = [
   {
     name: 'Архыз',
@@ -93,6 +93,7 @@ buttonProfile.addEventListener('click', () => {
     
     const formProfile = page.querySelector('.form_type_profile');
     const buttonCloseProfile = page.querySelector('.form__btn_type_close');
+    
     formProfile.addEventListener('submit', (evt) => {
       evt.preventDefault();
       const nameInput = formProfile.querySelector('.form__item_el_name');
