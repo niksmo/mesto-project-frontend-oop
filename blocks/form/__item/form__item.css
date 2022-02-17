@@ -1,7 +1,8 @@
 .form__item {
-  padding: 0;
+  padding: 0 0 9px;
   margin-top: 30px;
   border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
   font-size: 14px;
   line-height: 17px;
   text-overflow: ellipsis;
