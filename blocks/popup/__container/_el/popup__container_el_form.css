@@ -1,0 +1,21 @@
+.popup__container_el_form {
+  padding: 25px 22px;
+  width: calc(100% - (38px + 44px));
+  max-width: 332px;
+  background-color: #fff;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, .15);
+  border-radius: 10px;
+}
+
+@media (min-width: 667px) {
+  .popup__container_el_form {
+    max-width: calc(430px - 44px);
+  }
+}
+
+@media (min-width: 768px) {
+  .popup__container_el_form {
+    padding: 34px 36px 37px;
+    max-width: calc(430px - 72px);
+  }
+}

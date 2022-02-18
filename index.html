@@ -84,7 +84,7 @@
     <p class="footer__copyright">&copy;&nbsp;2020 Mesto Russia</p>
   </footer>
   <div class="popup popup_dest_profile">
-    <div class="popup__container">
+    <div class="popup__container popup__container_el_form">
       <form class="form form_type_profile" name="profile">
         <h2 class="form__heading">Редактировать профиль</h2>
         <input class="form__item form__item_el_name" type="text" name="name" placeholder="Имя" value="Жак-Ив Кусто">
@@ -95,7 +95,7 @@
     </div>
   </div>
   <div class="popup popup_dest_place">
-    <div class="popup__container">
+    <div class="popup__container popup__container_el_form">
       <form class="form form_type_place" name="place">
         <h2 class="form__heading">Новое место</h2>
         <input class="form__item form__item_el_name" type="text" name="name" placeholder="Название">
@@ -103,6 +103,13 @@
         <button class="form__btn form__btn_type_save" type="submit">Создать</button>
         <button class="form__btn form__btn_type_close" type="reset" aria-label="закрыть"></button>
       </form>
+    </div>
+  </div>
+  <div class="popup popup_dest_photo">
+    <div class="popup__container popup__container_el_photo">
+      <img class="view-photo" src="" alt="">
+      <p class="view-photo__caption"></p>
+      <button class="view-photo__close-btn" type="button" aria-label="закрыть"></button>
     </div>
   </div>
   <template id="gallery__item">
