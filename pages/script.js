@@ -39,7 +39,7 @@ function addCard (link, name) {
   const galleryItem = galleryItemTemplate.querySelector('.gallery__item').cloneNode(true);
   const likeButton = galleryItem.querySelector('.card__like-btn');
   const deleteButton = galleryItem.querySelector('.card__trash-btn');
-  const photo = galleryItem.querySelector('.card__image');
+  const cardPhoto = galleryItem.querySelector('.card__image');
 
   galleryItem.querySelector('.card__image').src = link;
   galleryItem.querySelector('.card__image').alt = name;
@@ -56,8 +56,13 @@ function addCard (link, name) {
   });
 
   //следим за событием «клик на фото»
-  photo.addEventListener('click', (evt) => {
-    console.log(evt.target);
+  cardPhoto.addEventListener('click', (evt) => {
+    const eventTarget = evt.target;
+    const photoSrc = eventTarget.src;
+    const photoAlt = eventTarget.alt;
+    const photoTitle = eventTarget.nextElementSibling.querySelector('.card__title').textContent;
+
+    viewPhoto (photoSrc, photoAlt, photoTitle)
     openPopup('photo');
   });
   
@@ -145,3 +150,13 @@ buttonCloseFormPlace.addEventListener('click', () => {
   urlInput.value = '';
 })
 
+
+//-----открыть фотографию
+function viewPhoto (src, alt, title) {
+  const photo = page.querySelector('.view-photo__image');
+  const caption = page.querySelector('.view-photo__caption');
+
+  photo.src = src;
+  photo.alt = alt;
+  caption.textContent = title;
+}
