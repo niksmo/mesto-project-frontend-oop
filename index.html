@@ -83,15 +83,26 @@
   <footer class="footer">
     <p class="footer__copyright">&copy;&nbsp;2020 Mesto Russia</p>
   </footer>
-  <div class="popup">
+  <div class="popup popup_dest_profile">
     <div class="popup__container">
-      <!-- <form class="form form_type_profile" name="profile">
+      <form class="form form_type_profile" name="profile">
         <h2 class="form__heading">Редактировать профиль</h2>
         <input class="form__item form__item_el_name" type="text" name="name" placeholder="Имя" value="Жак-Ив Кусто">
         <input class="form__item form__item_el_myself" type="text" name="myself" placeholder="О себе" value="Исследователь океана">
         <button class="form__btn form__btn_type_save" type="submit">Сохранить</button>
         <button class="form__btn form__btn_type_close" type="reset" aria-label="закрыть"></button>
-      </form> -->
+      </form>
+    </div>
+  </div>
+  <div class="popup popup_dest_place">
+    <div class="popup__container">
+      <form class="form form_type_place" name="place">
+        <h2 class="form__heading">Новое место</h2>
+        <input class="form__item form__item_el_name" type="text" name="name" placeholder="Название">
+        <input class="form__item form__item_el_url" type="text" name="url" placeholder="Ссылка на картинку">
+        <button class="form__btn form__btn_type_save" type="submit">Создать</button>
+        <button class="form__btn form__btn_type_close" type="reset" aria-label="закрыть"></button>
+      </form>
     </div>
   </div>
   <template id="gallery__item">
@@ -104,15 +115,6 @@
         </div>
       </article>
     </li>
-  </template>
-  <template id="form">
-    <form class="form" name="">
-      <h2 class="form__heading"></h2>
-      <input class="form__item" type="text" name="" placeholder="" value="">
-      <input class="form__item" type="text" name="" placeholder="" value="">
-      <button class="form__btn form__btn_type_save" type="submit"></button>
-      <button class="form__btn form__btn_type_close" type="reset" aria-label="закрыть"></button>
-    </form>
   </template>
   <script src="./pages/script.js"></script>
 </body>

@@ -5,7 +5,6 @@ const content = page.querySelector('.content');
 
 //------добавляем 6 карточек из массива на страницу при загрузке-------
 
-//карточки
 const initialCards = [
   {
     name: 'Архыз',
@@ -36,20 +35,16 @@ const initialCards = [
 function addCardsOnSturtUp (link, name) {
   const galleryItemTemplate = document.querySelector('#gallery__item').content;
   const galleryList = content.querySelector('.gallery');
-
-  //копируем шаблон в переменную
   const galleryItem = galleryItemTemplate.querySelector('.gallery__item').cloneNode(true);
 
-  //наполняем созданный элемент контентом
   galleryItem.querySelector('.card__image').src = link;
   galleryItem.querySelector('.card__image').alt = name;
   galleryItem.querySelector('.card__title').textContent = name;
 
-  //добавляем готовый элемент на страницу
   galleryList.prepend(galleryItem);
 }
 
-//перебираем все объекты массива и загружаем карточки
+//загружаем карточки на страницу
 initialCards.forEach(function (object) {
   const link = object.link;
   const name = object.name;
@@ -58,95 +53,48 @@ initialCards.forEach(function (object) {
 });
 
 
-//------попап и редактирование профиля
-
-function createForm (formName, title, inputName, inputNamePlaceholder, inputElse, inputElsePlaceholder, buttonText) {
-  const templateForm = document.querySelector('#form').content;
-  const popupContainer = document.querySelector('.popup__container');
-  const form = templateForm.querySelector('.form').cloneNode(true);
-  const formTitle = form.querySelector('.form__heading');
-  const formItems = form.querySelectorAll('.form__item');
-  const formButton = form.querySelector('.form__btn_type_save');
-  form.classList.add(`form_type_${formName}`);
-  form.name = formName;
-  formTitle.textContent = title;
-  formItems[0].classList.add(`form__item_el_${inputName}`);
-  formItems[0].name = inputName;
-  formItems[0].placeholder = inputNamePlaceholder;
-  formItems[1].classList.add(`form__item_el_${inputElse}`);
-  formItems[1].name = inputElse;
-  formItems[1].name = inputElsePlaceholder;
-  formButton.textContent = buttonText
-  popupContainer.append(form);
-}
-
-const buttonProfile = content.querySelector('.button_type_edit');
-
-const profileName = content.querySelector('.profile__name');
-
-const profileMyself = content.querySelector('.profile__about-myself');
-
-//открываем форму редактирования профиля
-buttonProfile.addEventListener('click', () => {
-  if (!page.querySelector('.form_type_profile')) {
-    createForm ('profile', 'Редактировать профиль', 'name', 'Имя', 'myself', 'О себе', 'Сохранить');
-    
-    const formProfile = page.querySelector('.form_type_profile');
-    const buttonCloseProfile = page.querySelector('.form__btn_type_close');
-    
-    formProfile.addEventListener('submit', (evt) => {
-      evt.preventDefault();
-      const nameInput = formProfile.querySelector('.form__item_el_name');
-      const myselfInput = formProfile.querySelector('.form__item_el_myself');
-      profileName.textContent = nameInput.value;
-      profileMyself.textContent = myselfInput.value;
-      closePopup();
-    });
-    
-    buttonCloseProfile.addEventListener('click', closePopup);
-  };
-  const nameInput = page.querySelector('.form__item_el_name');
-  const myselfInput = page.querySelector('.form__item_el_myself');
-  nameInput.value = profileName.textContent;
-  myselfInput.value = profileMyself.textContent;
-  openPopup()
-});
-
-//навести порядок>>>>>>>
-
-
-const popup = page.querySelector('.popup');
-
-const buttonCloseProfile = page.querySelector('.form__btn_type_close');
-
-const formProfile = page.querySelector('.form_type_profile');
-
-
-function openPopup() {
+//-----попап
+function openPopup(dest) {
+  const popup = page.querySelector(`.popup_dest_${dest}`)
   popup.classList.add('popup_opened')
 };
 
-function closePopup() {
+function closePopup(dest) {
+  const popup = page.querySelector(`.popup_dest_${dest}`)
   popup.classList.remove('popup_opened')
 };
 
-/*//открываем форму редактирования профиля
-buttonProfile.addEventListener('click', () => {
+
+//-----редактирование профиля
+const profileName = content.querySelector('.profile__name');
+const profileMyself = content.querySelector('.profile__about-myself');
+const buttonEditProfile = content.querySelector('.profile__button');
+const formProfile = page.querySelector('.form_type_profile');
+
+//открыть форму профиля
+buttonEditProfile.addEventListener('click', () => {
   const nameInput = formProfile.querySelector('.form__item_el_name');
   const myselfInput = formProfile.querySelector('.form__item_el_myself');
   nameInput.value = profileName.textContent;
   myselfInput.value = profileMyself.textContent;
-  openPopup()
-});*/
+  openPopup('profile');
+});
 
-//сохраняем данные в профиль
-// formProfile.addEventListener('submit', (evt) => {
-//   evt.preventDefault();
-//   const nameInput = formProfile.querySelector('.form__item_el_name');
-//   const myselfInput = formProfile.querySelector('.form__item_el_myself');
-//   profileName.textContent = nameInput.value;
-//   profileMyself.textContent = myselfInput.value;
-//   closePopup();
-// });
+//сохранить форму профиля
+formProfile.addEventListener('submit', (evt) => {
+  evt.preventDefault();
+  const nameInput = formProfile.querySelector('.form__item_el_name');
+  const myselfInput = formProfile.querySelector('.form__item_el_myself');
+  profileName.textContent = nameInput.value;
+  profileMyself.textContent = myselfInput.value;
+  closePopup('profile');
+});
 
-// buttonCloseProfile.addEventListener('click', closePopup);
+//закрыть форму профиля
+const buttonCloseProfile = formProfile.querySelector('.form__btn_type_close')
+buttonCloseProfile.addEventListener('click', () => {
+  closePopup('profile');
+});
+
+
+//-----добавление карточки
