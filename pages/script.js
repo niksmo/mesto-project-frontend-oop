@@ -32,36 +32,44 @@ const initialCards = [
   }
 ];
 
-function addCardsOnSturtUp (link, name) {
+function addCard (link, name) {
   const galleryItemTemplate = document.querySelector('#gallery__item').content;
   const galleryList = content.querySelector('.gallery');
   const galleryItem = galleryItemTemplate.querySelector('.gallery__item').cloneNode(true);
+  const likeButton = galleryItem.querySelector('.card__like-btn');
 
   galleryItem.querySelector('.card__image').src = link;
   galleryItem.querySelector('.card__image').alt = name;
   galleryItem.querySelector('.card__title').textContent = name;
 
+  //следим за событием «лайк»
+  likeButton.addEventListener('click', (evt) => {
+    evt.target.classList.toggle('card__like-btn_active');
+})
+
   galleryList.prepend(galleryItem);
 }
 
-//загружаем карточки на страницу
+//загружаем карточки из массива
 initialCards.forEach(function (object) {
   const link = object.link;
   const name = object.name;
   
-  addCardsOnSturtUp(link, name);
+  addCard(link, name);
 });
 
 
 //-----попап
 function openPopup(dest) {
-  const popup = page.querySelector(`.popup_dest_${dest}`)
-  popup.classList.add('popup_opened')
+  const popup = page.querySelector(`.popup_dest_${dest}`);
+
+  popup.classList.add('popup_opened');
 };
 
 function closePopup(dest) {
-  const popup = page.querySelector(`.popup_dest_${dest}`)
-  popup.classList.remove('popup_opened')
+  const popup = page.querySelector(`.popup_dest_${dest}`);
+
+  popup.classList.remove('popup_opened');
 };
 
 
@@ -91,10 +99,34 @@ formProfile.addEventListener('submit', (evt) => {
 });
 
 //закрыть форму профиля
-const buttonCloseProfile = formProfile.querySelector('.form__btn_type_close')
+const buttonCloseProfile = formProfile.querySelector('.form__btn_type_close');
+
 buttonCloseProfile.addEventListener('click', () => {
   closePopup('profile');
 });
 
 
 //-----добавление карточки
+const buttonAddPlace = content.querySelector('.button_type_add');
+const formPlace = page.querySelector('.form_type_place');
+
+//открывать форму
+buttonAddPlace.addEventListener('click', () => {
+  openPopup('place');
+});
+
+//сохранить форму карточки
+formPlace.addEventListener('submit', (evt) => {
+  evt.preventDefault();
+  const nameInput = formPlace.querySelector('.form__item_el_name');
+  const urlInput = formPlace.querySelector('.form__item_el_url');
+  addCard(urlInput.value, nameInput.value);
+  closePopup('place');
+})
+
+//закрыть форму добавления карточки
+const buttonCloseFormPlace = formPlace.querySelector('.form__btn_type_close');
+
+buttonCloseFormPlace.addEventListener('click', () => {
+  closePopup('place');
+})
