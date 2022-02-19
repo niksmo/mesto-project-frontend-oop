@@ -3,8 +3,7 @@ const page = document.querySelector('.page');
 const content = page.querySelector('.content');
 
 
-
-//------добавляем 6 карточек из массива на страницу при загрузке-------
+//------добавляем 6 карточек из массива на страницу при загрузке
 
 const initialCards = [
   {
@@ -33,6 +32,7 @@ const initialCards = [
   }
 ];
 
+//эпик карточка места
 function addCard (link, name) {
   const galleryItemTemplate = document.querySelector('#gallery__item').content;
   const galleryList = content.querySelector('.gallery');
@@ -45,32 +45,31 @@ function addCard (link, name) {
   galleryItem.querySelector('.card__image').alt = name;
   galleryItem.querySelector('.card__title').textContent = name;
 
-  //следим за событием «лайк»
+  //фича «лайк»
   likeButton.addEventListener('click', (evt) => {
     evt.target.classList.toggle('card__like-btn_active');
   });
 
-  //следим за событием «удаление»
+  //фича «удаление»
   deleteButton.addEventListener('click', (evt) => {
     evt.target.closest('.gallery__item').remove();
   });
 
-  //следим за событием «клик на фото»
+  //фича «просмотр фото»
   cardPhoto.addEventListener('click', (evt) => {
     const eventTarget = evt.target;
     const photoSrc = eventTarget.src;
     const photoAlt = eventTarget.alt;
     const photoTitle = eventTarget.nextElementSibling.querySelector('.card__title').textContent;
 
-    viewPhoto (photoSrc, photoAlt, photoTitle)
-    openPopup('photo');
+    viewPhoto (photoSrc, photoAlt, photoTitle);
   });
   
 
   galleryList.prepend(galleryItem);
 }
 
-//загружаем карточки из массива
+//загружаем карточки из массива на страницу
 initialCards.forEach(function (object) {
   addCard(object.link, object.name);
 });
@@ -122,14 +121,14 @@ buttonCloseProfile.addEventListener('click', () => {
 });
 
 
-//-----добавление карточки
+//-----добавление карточки пользователем
 const buttonAddPlace = content.querySelector('.button_type_add');
 const formPlace = page.querySelector('.form_type_place');
 const nameInput = formPlace.querySelector('.form__item_el_name');
 const urlInput = formPlace.querySelector('.form__item_el_url');
 const buttonCloseFormPlace = formPlace.querySelector('.button_type_close');
 
-//открывать форму
+//открыть форму
 buttonAddPlace.addEventListener('click', () => {
   openPopup('place');
 });
@@ -151,7 +150,7 @@ buttonCloseFormPlace.addEventListener('click', () => {
 })
 
 
-//-----просмотр фотографий
+//-----просмотр фотографии
 function viewPhoto (src, alt, title) {
   const photo = page.querySelector('.view-photo__image');
   const caption = page.querySelector('.view-photo__caption');
@@ -159,6 +158,7 @@ function viewPhoto (src, alt, title) {
   photo.src = src;
   photo.alt = alt;
   caption.textContent = title;
+  openPopup('photo')
 }
 
 //закрыть просмотр фотографии
