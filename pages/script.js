@@ -77,14 +77,14 @@ initialCards.forEach(function (object) {
 
 
 //-----попап
-function openPopup(destination) {
-  const popup = page.querySelector(`.popup_dest_${destination}`);
+function openPopup(name) {
+  const popup = page.querySelector(`.popup_feature_${name}`);
 
   popup.classList.add('popup_opened');
 };
 
-function closePopup(destination) {
-  const popup = page.querySelector(`.popup_dest_${destination}`);
+function closePopup(name) {
+  const popup = page.querySelector(`.popup_feature_${name}`);
 
   popup.classList.remove('popup_opened');
 };
@@ -95,7 +95,7 @@ const profileName = content.querySelector('.profile__name');
 const profileMyself = content.querySelector('.profile__about-myself');
 const buttonEditProfile = content.querySelector('.profile__button');
 const formProfile = page.querySelector('.form_type_profile');
-const buttonCloseProfile = formProfile.querySelector('.form__btn_type_close');
+const buttonCloseProfile = formProfile.querySelector('.button_type_close');
 
 //открыть форму профиля
 buttonEditProfile.addEventListener('click', () => {
@@ -127,7 +127,7 @@ const buttonAddPlace = content.querySelector('.button_type_add');
 const formPlace = page.querySelector('.form_type_place');
 const nameInput = formPlace.querySelector('.form__item_el_name');
 const urlInput = formPlace.querySelector('.form__item_el_url');
-const buttonCloseFormPlace = formPlace.querySelector('.form__btn_type_close');
+const buttonCloseFormPlace = formPlace.querySelector('.button_type_close');
 
 //открывать форму
 buttonAddPlace.addEventListener('click', () => {

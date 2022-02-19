@@ -15,6 +15,7 @@
 @import url(../blocks/profile/__button/profile__button.css);
 @import url(../blocks/button/_type/button_type_add.css);
 @import url(../blocks/button/_icon/button_icon_add.css);
+@import url(../blocks/button/_type/button_type_close.css);
 @import url(../blocks/places/places.css);
 @import url(../blocks/gallery/gallery.css);
 @import url(../blocks/gallery/__item/gallery__item.css);
