@@ -1,5 +1,4 @@
 const page = document.querySelector('.page');
-
 const content = page.querySelector('.content');
 
 
@@ -63,7 +62,6 @@ function closePopup(popupFeature) {
 };
 
 
-
 //-----редактирование профиля
 const profileName = content.querySelector('.profile__name');
 const profileMyself = content.querySelector('.profile__about-myself');
@@ -71,11 +69,11 @@ const buttonEditProfile = content.querySelector('.profile__button');
 const popupEditProfile = page.querySelector('.popup_feature_profile')
 const formProfile = page.querySelector('.form_type_profile');
 const buttonCloseProfile = formProfile.querySelector('.button_type_close');
+const nameInput = formProfile.querySelector('.form__item_el_name');
+const myselfInput = formProfile.querySelector('.form__item_el_myself');
 
 //открыть форму профиля
 buttonEditProfile.addEventListener('click', () => {
-  const nameInput = formProfile.querySelector('.form__item_el_name');
-  const myselfInput = formProfile.querySelector('.form__item_el_myself');
   nameInput.value = profileName.textContent;
   myselfInput.value = profileMyself.textContent;
   openPopup(popupEditProfile);
@@ -84,8 +82,6 @@ buttonEditProfile.addEventListener('click', () => {
 //сохранить форму профиля
 formProfile.addEventListener('submit', (evt) => {
   evt.preventDefault();
-  const nameInput = formProfile.querySelector('.form__item_el_name');
-  const myselfInput = formProfile.querySelector('.form__item_el_myself');
   profileName.textContent = nameInput.value;
   profileMyself.textContent = myselfInput.value;
   closePopup(popupEditProfile);
@@ -101,7 +97,7 @@ buttonCloseProfile.addEventListener('click', () => {
 const buttonAddPlace = content.querySelector('.button_type_add');
 const popupAddPlace = page.querySelector('.popup_feature_place');
 const formPlace = page.querySelector('.form_type_place');
-const nameInput = formPlace.querySelector('.form__item_el_name');
+const placeInput = formPlace.querySelector('.form__item_el_name');
 const urlInput = formPlace.querySelector('.form__item_el_url');
 const buttonCloseFormPlace = formPlace.querySelector('.button_type_close');
 
@@ -113,18 +109,18 @@ buttonAddPlace.addEventListener('click', () => {
 //сохранить форму карточки
 formPlace.addEventListener('submit', (evt) => {
   evt.preventDefault();
-  const newCard = createCard(urlInput.value, nameInput.value);
+  const newCard = createCard(urlInput.value, placeInput.value);
   newCard
   addCard(newCard);
   closePopup(popupAddPlace);
-  nameInput.value = '';
+  placeInput.value = '';
   urlInput.value = '';
 })
 
 //закрыть форму добавления карточки
 buttonCloseFormPlace.addEventListener('click', () => {
   closePopup(popupAddPlace);
-  nameInput.value = '';
+  placeInput.value = '';
   urlInput.value = '';
 })
 
