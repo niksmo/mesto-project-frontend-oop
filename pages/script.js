@@ -151,7 +151,7 @@ buttonCloseFormPlace.addEventListener('click', () => {
 })
 
 
-//-----открыть фотографию
+//-----просмотр фотографий
 function viewPhoto (src, alt, title) {
   const photo = page.querySelector('.view-photo__image');
   const caption = page.querySelector('.view-photo__caption');
@@ -160,3 +160,10 @@ function viewPhoto (src, alt, title) {
   photo.alt = alt;
   caption.textContent = title;
 }
+
+//закрыть просмотр фотографии
+const buttonCloseViewPhoto = page.querySelector('.popup_feature_photo .button_type_close')
+
+buttonCloseViewPhoto.addEventListener('click', () => {
+  closePopup('photo');
+});

@@ -1,3 +1,6 @@
 .view-photo__caption {
-  
+  margin: 10px 0 0;
+  color: #fff;
+  font-size: 12px;
+  line-height: 15px;
 }

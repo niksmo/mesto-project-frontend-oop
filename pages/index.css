@@ -31,7 +31,7 @@
 @import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/popup/__container/popup__container.css);
 @import url(../blocks/popup/__container/_el/popup__container_el_form.css);
-@import url(../blocks/popup/__container/_el/popup__container_el_photo.css);
+@import url(../blocks/popup/_feature/popup_feature_photo.css);
 @import url(../blocks/form/form.css);
 @import url(../blocks/form/__heading/form__heading.css);
 @import url(../blocks/form/__item/form__item.css);
@@ -41,4 +41,3 @@
 @import url(../blocks/view-photo/view-photo.css);
 @import url(../blocks/view-photo/__image/view-photo__image.css);
 @import url(../blocks/view-photo/__caption/view-photo__caption.css);
-@import url(../blocks/view-photo/__close-btn/view-photo__close-btn.css);
