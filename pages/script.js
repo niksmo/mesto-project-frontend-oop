@@ -3,10 +3,10 @@ const page = document.querySelector('.page');
 const content = page.querySelector('.content');
 
 
-//эпик карточка места
-function addCard (link, name) {
+//-----эпик карточка
+function createCard (link, name) {
   const galleryItemTemplate = document.querySelector('#gallery__item').content;
-  const galleryList = content.querySelector('.gallery');
+  
   const galleryItem = galleryItemTemplate.querySelector('.gallery__item').cloneNode(true);
   const likeButton = galleryItem.querySelector('.card__like-btn');
   const deleteButton = galleryItem.querySelector('.card__trash-btn');
@@ -36,13 +36,20 @@ function addCard (link, name) {
     viewPhoto (photoSrc, photoAlt, photoTitle);
   });
   
-
-  galleryList.prepend(galleryItem);
+  return galleryItem;
 }
+
+function addCard(card) {
+  const galleryList = content.querySelector('.gallery');
+  galleryList.prepend(card);
+}
+
 
 //загружаем карточки из массива на страницу
 initialCards.forEach(function (object) {
-  addCard(object.link, object.name);
+  const initialCard = createCard(object.link, object.name);
+  initialCard
+  addCard(initialCard);
 });
 
 
@@ -107,11 +114,19 @@ buttonAddPlace.addEventListener('click', () => {
 //сохранить форму карточки
 formPlace.addEventListener('submit', (evt) => {
   evt.preventDefault();
-  addCard(urlInput.value, nameInput.value);
+  const newCard = createCard(urlInput.value, nameInput.value);
+  newCard
+  addCard(newCard);
   closePopup('place');
   nameInput.value = '';
   urlInput.value = '';
 })
+
+
+
+
+
+
 
 //закрыть форму добавления карточки
 buttonCloseFormPlace.addEventListener('click', () => {
