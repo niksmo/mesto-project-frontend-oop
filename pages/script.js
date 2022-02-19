@@ -3,35 +3,6 @@ const page = document.querySelector('.page');
 const content = page.querySelector('.content');
 
 
-//------добавляем 6 карточек из массива на страницу при загрузке
-
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
-
 //эпик карточка места
 function addCard (link, name) {
   const galleryItemTemplate = document.querySelector('#gallery__item').content;
@@ -41,8 +12,8 @@ function addCard (link, name) {
   const deleteButton = galleryItem.querySelector('.card__trash-btn');
   const cardPhoto = galleryItem.querySelector('.card__image');
 
-  galleryItem.querySelector('.card__image').src = link;
-  galleryItem.querySelector('.card__image').alt = name;
+  cardPhoto.src = link;
+  cardPhoto.alt = name;
   galleryItem.querySelector('.card__title').textContent = name;
 
   //фича «лайк»
