@@ -5,7 +5,6 @@ const content = page.querySelector('.content');
 //-----эпик карточка
 function createCard (link, name) {
   const galleryItemTemplate = document.querySelector('#gallery__item').content;
-  
   const galleryItem = galleryItemTemplate.querySelector('.gallery__item').cloneNode(true);
   const likeButton = galleryItem.querySelector('.card__like-btn');
   const deleteButton = galleryItem.querySelector('.card__trash-btn');
