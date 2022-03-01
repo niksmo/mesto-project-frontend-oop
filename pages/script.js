@@ -3,16 +3,19 @@ const content = page.querySelector('.content');
 
 
 //-----эпик карточка
+const galleryItemTemplate = document.querySelector('#gallery__item').content;
+const galleryList = content.querySelector('.gallery');
+
 function createCard (link, name) {
-  const galleryItemTemplate = document.querySelector('#gallery__item').content;
   const galleryItem = galleryItemTemplate.querySelector('.gallery__item').cloneNode(true);
   const likeButton = galleryItem.querySelector('.card__like-btn');
   const deleteButton = galleryItem.querySelector('.card__trash-btn');
   const cardPhoto = galleryItem.querySelector('.card__image');
+  const cardTitle = galleryItem.querySelector('.card__title');
 
   cardPhoto.src = link;
   cardPhoto.alt = name;
-  galleryItem.querySelector('.card__title').textContent = name;
+  cardTitle.textContent = name;
 
   //фича «лайк»
   likeButton.addEventListener('click', (evt) => {
@@ -37,8 +40,8 @@ function createCard (link, name) {
   return galleryItem;
 }
 
+
 function addCard(card) {
-  const galleryList = content.querySelector('.gallery');
   galleryList.prepend(card);
 }
 
@@ -91,6 +94,12 @@ buttonCloseProfile.addEventListener('click', () => {
   closePopup(popupEditProfile);
 });
 
+popupEditProfile.addEventListener('click', (evt) => {
+  if (evt.target === evt.currentTarget) {
+    closePopup(popupEditProfile);
+  };
+}, true);
+
 
 //-----добавление карточки пользователем
 const buttonAddPlace = content.querySelector('.button_type_add');
@@ -126,11 +135,10 @@ buttonCloseFormPlace.addEventListener('click', () => {
 
 //-----просмотр фотографии
 const popupViewPhoto = page.querySelector('.popup_feature_photo');
+const photo = page.querySelector('.view-photo__image');
+const caption = page.querySelector('.view-photo__caption');
 
 function viewPhoto (src, alt, title) {
-  const photo = page.querySelector('.view-photo__image');
-  const caption = page.querySelector('.view-photo__caption');
-
   photo.src = src;
   photo.alt = alt;
   caption.textContent = title;
