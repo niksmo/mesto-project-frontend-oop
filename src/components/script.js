@@ -63,16 +63,16 @@ const buttonEditProfile = content.querySelector('.profile__button');
 const popupEditProfile = page.querySelector('.popup_feature_profile')
 const formProfile = page.querySelector('.form_type_profile');
 const buttonCloseProfile = formProfile.querySelector('.button_type_close');
-const nameInput = formProfile.querySelector('.form__item_el_name');
-const myselfInput = formProfile.querySelector('.form__item_el_myself');
+const nameInput = formProfile.querySelector('.form__input_el_name');
+const myselfInput = formProfile.querySelector('.form__input_el_myself');
 
 
 //-----добавление карточки пользователем
 const buttonAddPlace = content.querySelector('.button_type_add');
 const popupAddPlace = page.querySelector('.popup_feature_place');
 const formPlace = page.querySelector('.form_type_place');
-const placeInput = formPlace.querySelector('.form__item_el_name');
-const urlInput = formPlace.querySelector('.form__item_el_url');
+const placeInput = formPlace.querySelector('.form__input_el_name');
+const urlInput = formPlace.querySelector('.form__input_el_url');
 const buttonCloseFormPlace = formPlace.querySelector('.button_type_close');
 
 

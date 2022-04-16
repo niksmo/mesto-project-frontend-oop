@@ -1,6 +1,7 @@
-.form__item {
+.form__input {
+  display: block;
   padding: 0 0 9px;
-  margin-top: 30px;
+
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, .2);
   font-size: 14px;
@@ -8,8 +9,4 @@
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-}
-
-.form__item:first-of-type {
-  margin-top: 0;
 }
