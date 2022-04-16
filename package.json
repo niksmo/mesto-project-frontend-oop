@@ -1,0 +1,22 @@
+{
+  "name": "mesto-project",
+  "version": "1.0.0",
+  "description": "y.p. 5th mounth project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NikolaySmolov/mesto-project.git"
+  },
+  "keywords": [
+    "mesto"
+  ],
+  "author": "NikolaySmolov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NikolaySmolov/mesto-project/issues"
+  },
+  "homepage": "https://github.com/NikolaySmolov/mesto-project#readme"
+}

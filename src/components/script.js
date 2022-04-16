@@ -1,7 +1,6 @@
 const page = document.querySelector('.page');
 const content = page.querySelector('.content');
 
-
 //-----эпик карточка
 const galleryItemTemplate = document.querySelector('#gallery__item').content;
 const galleryList = content.querySelector('.gallery');
@@ -41,17 +40,10 @@ function createCard (link, name) {
 }
 
 
+
 function addCard(card) {
   galleryList.prepend(card);
 }
-
-
-//загружаем карточки из массива на страницу
-initialCards.forEach(function (object) {
-  const initialCard = createCard(object.link, object.name);
-  initialCard
-  addCard(initialCard);
-});
 
 
 //-----попап
@@ -74,32 +66,6 @@ const buttonCloseProfile = formProfile.querySelector('.button_type_close');
 const nameInput = formProfile.querySelector('.form__item_el_name');
 const myselfInput = formProfile.querySelector('.form__item_el_myself');
 
-//открыть форму профиля
-buttonEditProfile.addEventListener('click', () => {
-  nameInput.value = profileName.textContent;
-  myselfInput.value = profileMyself.textContent;
-  openPopup(popupEditProfile);
-});
-
-//сохранить форму профиля
-formProfile.addEventListener('submit', (evt) => {
-  evt.preventDefault();
-  profileName.textContent = nameInput.value;
-  profileMyself.textContent = myselfInput.value;
-  closePopup(popupEditProfile);
-});
-
-//закрыть форму профиля
-buttonCloseProfile.addEventListener('click', () => {
-  closePopup(popupEditProfile);
-});
-
-popupEditProfile.addEventListener('click', (evt) => {
-  if (evt.target === evt.currentTarget) {
-    closePopup(popupEditProfile);
-  };
-}, true);
-
 
 //-----добавление карточки пользователем
 const buttonAddPlace = content.querySelector('.button_type_add');
@@ -109,31 +75,8 @@ const placeInput = formPlace.querySelector('.form__item_el_name');
 const urlInput = formPlace.querySelector('.form__item_el_url');
 const buttonCloseFormPlace = formPlace.querySelector('.button_type_close');
 
-//открыть форму
-buttonAddPlace.addEventListener('click', () => {
-  openPopup(popupAddPlace);
-});
 
-//сохранить форму карточки
-formPlace.addEventListener('submit', (evt) => {
-  evt.preventDefault();
-  const newCard = createCard(urlInput.value, placeInput.value);
-  newCard
-  addCard(newCard);
-  closePopup(popupAddPlace);
-  placeInput.value = '';
-  urlInput.value = '';
-})
-
-//закрыть форму добавления карточки
-buttonCloseFormPlace.addEventListener('click', () => {
-  closePopup(popupAddPlace);
-  placeInput.value = '';
-  urlInput.value = '';
-})
-
-
-//-----просмотр фотографии
+//-----просмотр фотографии карточки
 const popupViewPhoto = page.querySelector('.popup_feature_photo');
 const photo = page.querySelector('.view-photo__image');
 const caption = page.querySelector('.view-photo__caption');
@@ -145,9 +88,7 @@ function viewPhoto (src, alt, title) {
   openPopup(popupViewPhoto)
 }
 
-//закрыть просмотр фотографии
+//закрыть просмотр фотографии карточки
 const buttonCloseViewPhoto = page.querySelector('.popup_feature_photo .button_type_close')
 
-buttonCloseViewPhoto.addEventListener('click', () => {
-  closePopup(popupViewPhoto);
-});
+export { createCard, addCard, openPopup, closePopup, profileName, profileMyself, buttonEditProfile, popupEditProfile, formProfile, buttonCloseProfile, nameInput, myselfInput, buttonAddPlace, popupAddPlace, formPlace, placeInput, urlInput, buttonCloseFormPlace, popupViewPhoto, buttonCloseViewPhoto }
