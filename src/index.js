@@ -1,3 +1,5 @@
+import './pages/index.css';
+
 import loadCardsOnStartup from './components/utils';
 import { createCard, addCard, openPopup, closePopup, profileName, profileMyself, buttonEditProfile, popupEditProfile, formProfile, buttonCloseProfile, nameInput, myselfInput, buttonAddPlace, popupAddPlace, formPlace, placeInput, urlInput, buttonCloseFormPlace, popupViewPhoto, buttonCloseViewPhoto } from './components/script';
 
