@@ -33,8 +33,7 @@ function createCard (link, name) {
     const eventTarget = evt.target;
     const photoSrc = eventTarget.src;
     const photoAlt = eventTarget.alt;
-    const photoTitle = eventTarget.nextElementSibling.querySelector('.card__title').textContent; /* переписать поиск */
-
+    const photoTitle = eventTarget.parentElement.querySelector('.card__title').textContent;
     viewPhoto (photoSrc, photoAlt, photoTitle);
   });
   

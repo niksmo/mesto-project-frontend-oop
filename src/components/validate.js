@@ -1,8 +1,10 @@
 function toggleButtonState(inputList, submitButton, settings) {
   if (hasInvalidInput(inputList)) {
     submitButton.classList.add(settings.inactiveButtonClass);
+    submitButton.disabled = true;
   } else {
     submitButton.classList.remove(settings.inactiveButtonClass);
+    submitButton.disabled = false;
   }
 }
 

@@ -69,6 +69,15 @@ popupViewPhoto.addEventListener('mousedown', (evt) => {
   }
 })
 
+//все попапы закрываются по клавише escape
+document.addEventListener('keydown', (evt) => {
+  if (evt.key === 'Escape') {
+    closePopup(popupEditProfile);
+    closeAddPlace();
+    closePopup(popupViewPhoto);
+  }
+})
+
 //валидация форм
 enableValidation({
   formSelector: '.popup__form',
