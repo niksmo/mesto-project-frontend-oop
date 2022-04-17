@@ -2,7 +2,9 @@ import './pages/index.css';
 import { page, addCard, openPopup, closePopup } from './components/utils';
 import { createCard, popupViewPhoto } from './components/card';
 import { popupEditProfile, formProfile, editProfile, saveProfile, popupAddPlace, formPlace, closeAddPlace, submitFormPlace } from './components/modal';
-import { initialCards } from './components/data'
+import { initialCards } from './components/data';
+import { enableValidation } from './components/validate';
+
 
 //загружаем карточки из data.js на страницу
 initialCards.forEach(function (object) {
@@ -66,3 +68,13 @@ popupViewPhoto.addEventListener('mousedown', (evt) => {
     closePopup(popupViewPhoto);
   }
 })
+
+//валидация форм
+enableValidation({
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+});
