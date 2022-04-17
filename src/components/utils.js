@@ -1,9 +1,19 @@
-import { initialCards } from './data';
-import { createCard, addCard } from './script';
+const page = document.querySelector('.page');
+const galleryList = document.querySelector('.gallery');
 
-//загружаем карточки из массива на страницу
-export default initialCards.forEach(function (object) {
-  const initialCard = createCard(object.link, object.name);
-  initialCard
-  addCard(initialCard);
-});
+//добавить карточку
+function addCard(card) {
+  galleryList.prepend(card);
+}
+
+//открыть попап
+function openPopup(popupFeature) {
+  popupFeature.classList.add('popup_opened');
+}
+
+//закрыть попап
+function closePopup(popupFeature) {
+  popupFeature.classList.remove('popup_opened');
+}
+
+export { page, addCard, openPopup, closePopup }

@@ -37,6 +37,7 @@
 @import url(../blocks/form/__field/form__field.css);
 @import url(../blocks/form/__input/form__input.css);
 @import url(../blocks/form/__input-error/form__input-error.css);
+@import url(../blocks/form/__input-error/_active/form__input-error_active.css);
 @import url(../blocks/form/__btn/form__btn.css);
 @import url(../blocks/form/__btn/_disabled/form__btn_disabled.css);
 @import url(../blocks/view-photo/view-photo.css);
