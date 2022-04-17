@@ -1,7 +1,6 @@
 .form__input {
   display: block;
-  padding: 0 0 9px;
-
+  padding: 9px 0;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, .2);
   font-size: 14px;
@@ -9,4 +8,12 @@
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+}
+
+.form__input:focus {
+  outline-offset: 2px;
+}
+
+.form__input:invalid {
+  border-bottom: 1px solid #FF0000;
 }
