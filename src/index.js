@@ -42,7 +42,9 @@ buttonAddPlace.addEventListener('click', () => {
   openPopup(popupAddPlace);
 });
 
-buttonCloseFormPlace.addEventListener('click', closeAddPlace)
+buttonCloseFormPlace.addEventListener('click', () => {
+  closePopup(popupAddPlace);
+})
 
 popupAddPlace.addEventListener('mousedown', (evt) => {
   if (evt.target === evt.currentTarget) {
@@ -79,11 +81,13 @@ document.addEventListener('keydown', (evt) => {
 })
 
 //валидация форм
-enableValidation({
+export const settings = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__button',
   inactiveButtonClass: 'popup__button_disabled',
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__error_visible'
-});
+};
+
+enableValidation(settings);

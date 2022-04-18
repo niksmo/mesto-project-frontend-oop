@@ -1,5 +1,7 @@
 import { page, addCard, openPopup, closePopup } from './utils';
 import { createCard } from './card';
+import { settings } from '../index';
+import { toggleButtonState } from './validate';
 
 //профиль
 const profileName = page.querySelector('.profile__name');
@@ -30,8 +32,10 @@ const urlInput = formPlace.querySelector('.form__input_el_url');
 
 function closeAddPlace() {
   closePopup(popupAddPlace);
-  placeInput.value = '';
-  urlInput.value = '';
+  const inputList = [placeInput, urlInput];
+  const submitBtnPlace = formPlace.querySelector('.form__btn')
+  inputList.forEach((input) => input.value = '');
+  toggleButtonState(inputList, submitBtnPlace, settings)
 }
 
 
@@ -40,6 +44,16 @@ function submitFormPlace () {
   addCard(newCard);
   closeAddPlace();
 }
+
+// function toggleButtonState(inputList, submitButton, settings) {
+//   if (hasInvalidInput(inputList)) {
+//     submitButton.classList.add(settings.inactiveButtonClass);
+//     submitButton.disabled = true;
+//   } else {
+//     submitButton.classList.remove(settings.inactiveButtonClass);
+//     submitButton.disabled = false;
+//   }
+// }
 
 
 export { popupEditProfile, formProfile, editProfile, saveProfile, popupAddPlace, formPlace, closeAddPlace, submitFormPlace }
