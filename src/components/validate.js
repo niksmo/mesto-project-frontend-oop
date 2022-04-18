@@ -1,4 +1,4 @@
-function toggleButtonState(inputList, submitButton, settings) {
+export function toggleButtonState(inputList, submitButton, settings) {
   if (hasInvalidInput(inputList)) {
     submitButton.classList.add(settings.inactiveButtonClass);
     submitButton.disabled = true;
@@ -14,7 +14,7 @@ function hasInvalidInput(inputList) {
   })
 }
 
-function checkInputValidity(form, inputElement, settings) {
+export function checkInputValidity(form, inputElement, settings) {
   if (!inputElement.validity.valid) {
     showInputError(form, inputElement, inputElement.validationMessage, settings);
   } else {
