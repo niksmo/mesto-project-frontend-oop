@@ -27,7 +27,6 @@ const popupCloseEventListeners = popups.forEach((popup) => {
 
 //профиль
 const buttonEditProfile = page.querySelector('.profile__button');
-const buttonCloseProfile = formProfile.querySelector('.button_type_close');
 
 buttonEditProfile.addEventListener('click', editProfile);
 
@@ -39,7 +38,6 @@ formProfile.addEventListener('submit', (evt) => {
 
 //новая карточка
 const buttonAddPlace = page.querySelector('.button_type_add');
-const buttonCloseFormPlace = formPlace.querySelector('.button_type_close');
 
 buttonAddPlace.addEventListener('click', () => {
   openPopup(popupAddPlace);
@@ -50,18 +48,6 @@ formPlace.addEventListener('submit', (evt) => {
   submitFormPlace();
 })
 
-
-//просмотр фото карточки
-const buttonCloseViewPhoto = page.querySelector('.popup_feature_photo .button_type_close')
-
-//все попапы закрываются по клавише escape
-document.addEventListener('keydown', (evt) => {
-  if (evt.key === 'Escape') {
-    closePopup(popupEditProfile);
-    closeAddPlace();
-    closePopup(popupViewPhoto);
-  }
-})
 
 //валидация форм
 export const settings = {

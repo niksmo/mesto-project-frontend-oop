@@ -14,7 +14,7 @@ function hasInvalidInput(inputList) {
   })
 }
 
-function checkInputValidity(form, inputElement, settings) {
+export function checkInputValidity(form, inputElement, settings) {
   if (!inputElement.validity.valid) {
     showInputError(form, inputElement, inputElement.validationMessage, settings);
   } else {

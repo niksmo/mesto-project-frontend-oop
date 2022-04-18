@@ -1,7 +1,7 @@
 import { page, addCard, openPopup, closePopup } from './utils';
 import { createCard } from './card';
 import { settings } from '../index';
-import { toggleButtonState } from './validate';
+import { toggleButtonState, checkInputValidity } from './validate';
 
 //профиль
 const profileName = page.querySelector('.profile__name');
@@ -14,6 +14,12 @@ const myselfInput = formProfile.querySelector('.form__input_el_myself');
 function editProfile() {
   nameInput.value = profileName.textContent;
   myselfInput.value = profileMyself.textContent;
+  const inputList = [nameInput, myselfInput];
+  const submitBtnProfile = formProfile.querySelector('.form__btn');
+  inputList.forEach((input) => {
+    checkInputValidity(formProfile, input, settings)
+  })
+  toggleButtonState(inputList, submitBtnProfile, settings);
   openPopup(popupEditProfile);
 }
 
