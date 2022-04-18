@@ -32,9 +32,8 @@ function createCard (link, name) {
   cardPhoto.addEventListener('click', (evt) => {
     const eventTarget = evt.target;
     const photoSrc = eventTarget.src;
-    const photoAlt = eventTarget.alt;
-    const photoTitle = eventTarget.parentElement.querySelector('.card__title').textContent;
-    viewPhoto (photoSrc, photoAlt, photoTitle);
+    const photoTitle = eventTarget.alt;
+    viewPhoto (photoSrc, photoTitle, photoTitle);
   });
   
   return galleryItem;
