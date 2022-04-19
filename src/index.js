@@ -14,7 +14,7 @@ initialCards.forEach(function (object) {
 
 const popups = page.querySelectorAll('.popup');
 
-const popupCloseEventListeners = popups.forEach((popup) => {
+popups.forEach((popup) => {
   popup.addEventListener('mousedown', (evt) => {
     if (evt.target.classList.contains('popup_opened')) {
       closePopup(popup);
