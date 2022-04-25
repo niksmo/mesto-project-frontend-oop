@@ -5,6 +5,9 @@ import { popupEditProfile, formProfile, editProfile, saveProfile, popupAddPlace,
 import { initialCards } from './components/data';
 import { enableValidation } from './components/validate';
 
+import { getCards, testGetCards } from './components/api'; //тестировал токен
+
+testGetCards() // тестировал токен
 
 //загружаем карточки из data.js на страницу
 initialCards.forEach(function (object) {
