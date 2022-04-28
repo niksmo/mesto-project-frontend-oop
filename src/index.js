@@ -1,13 +1,12 @@
 import './pages/index.css';
 import { page, addCard, openPopup, closePopup } from './components/utils';
-import { createCard, popupViewPhoto } from './components/card';
-import { popupEditProfile, formProfile, editProfile, saveProfile, popupAddPlace, formPlace, closeAddPlace, submitFormPlace } from './components/modal';
+import { createCard } from './components/card';
+import { formProfile, editProfile, saveProfile, popupAddPlace, formPlace, closeAddPlace, submitFormPlace } from './components/modal';
 import { initialCards } from './components/data';
 import { enableValidation } from './components/validate';
 
-import { getCards, testGetCards } from './components/api'; //тестировал токен
+import { getUser } from './components/api';
 
-testGetCards() // тестировал токен
 
 //загружаем карточки из data.js на страницу
 initialCards.forEach(function (object) {
@@ -29,6 +28,30 @@ popups.forEach((popup) => {
 
 
 //профиль
+
+//привести в нормальный вид!
+const profileName = page.querySelector('.profile__name');
+const profileObout = page.querySelector('.profile__about-myself')
+const profileInfo = page.querySelector('.profile__info')
+
+function renderTextProfile (name, about) {
+  profileName.textContent = name;
+  profileObout.textContent = about;
+}
+
+function initProfile() {
+  getUser()
+  .then((user) => {
+    return renderTextProfile(user.name, user.about)
+  })
+  .finally(() => {
+    profileInfo.style.visibility = 'visible';
+  })
+}
+
+initProfile()
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 const buttonEditProfile = page.querySelector('.profile__button');
 
 buttonEditProfile.addEventListener('click', editProfile);

@@ -1,4 +1,5 @@
 .profile__info {
+  visibility: hidden;
   margin-bottom: 36px;
   display: grid;
   align-items: baseline;
