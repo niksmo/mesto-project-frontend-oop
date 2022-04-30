@@ -23,9 +23,6 @@ const getUser = () => {
       return Promise.reject(`Ошибка: ${res.status}`)
     }
   })
-  .catch((e) => {
-    console.log (`catch поймал ошибку ${e}`)
-  })
 }
 
 
@@ -40,9 +37,6 @@ const getCards = () => {
       return Promise.reject(`Ошибка: ${res.status}`)
     }
   })
-  .catch((e) => {
-    console.log (`catch поймал ошибку ${e}`)
-  })
 }
 
 
@@ -53,16 +47,25 @@ const patchProfile = (object) => {
     body: JSON.stringify(object)
   })
   .then((res) => {
+    if (!res.ok) {
+      return Promise.reject(`Ошибка: ${res.status}`)
+    }
+  })
+}
+
+const putNewCard = (object) => {
+  return fetch(`${config.baseUrl}/cards`, {
+    method: 'PUT',
+    header: config.headers,
+    body: JSON.stringify(object)
+  })
+  .then((res) => {
     if (res.ok) {
       return
     } else {
       return Promise.reject(`Ошибка: ${res.status}`)
     }
   })
-  .catch((e) => {
-    console.log (`catch поймал ошибку ${e}`)
-  })
 }
 
-
-export { getUser, patchProfile, getCards }
+export { getUser, patchProfile, getCards, putNewCard }

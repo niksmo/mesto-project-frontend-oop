@@ -34,7 +34,10 @@ function saveProfile() {
   .then(() => {
     renderTextProfile(inputData.name, inputData.about)
   })
-  closePopup(popupEditProfile);
+  .catch((e) => {
+    console.log (e)
+  })
+  closePopup(popupEditProfile)
 }
 
 //добавление карточки

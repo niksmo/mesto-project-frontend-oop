@@ -16,6 +16,9 @@ getCards()
     addCard(initialCard)
   })
 })
+.catch((e) => {
+  console.log (e)
+})
 
 
 //закрыть попап
@@ -44,6 +47,9 @@ function initProfile() {
   })
   .finally(() => {
     makeVisible(profileInfo);
+  })
+  .catch((e) => {
+    console.log (e)
   })
 }
 
