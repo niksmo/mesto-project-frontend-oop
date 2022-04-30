@@ -25,4 +25,9 @@ function closeByEsc(event) {
   }
 }
 
-export { page, addCard, openPopup, closePopup }
+//отобразить компонент/лоадер
+function makeVisible (element) {
+  element.style.visibility = 'visible';
+}
+
+export { page, addCard, openPopup, closePopup, makeVisible }

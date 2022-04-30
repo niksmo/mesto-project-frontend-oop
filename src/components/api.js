@@ -24,9 +24,27 @@ const getUser = () => {
     }
   })
   .catch((e) => {
-    console.log (e)
+    console.log (`catch поймал ошибку ${e}`)
   })
 }
 
 
-export { getUser }
+const getCards = () => {
+  return fetch(`${config.baseUrl}/cards`, {
+    headers: config.headers
+  })
+  .then((res) => {
+    if (res.ok) {
+      return res.json()
+    } else {
+      return Promise.reject(`Ошибка: ${res.status}`)
+    }
+  })
+  .catch((e) => {
+    console.log (`catch поймал ошибку ${e}`)
+  })
+}
+
+
+
+export { getUser, getCards }

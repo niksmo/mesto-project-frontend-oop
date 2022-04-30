@@ -1,19 +1,25 @@
 import './pages/index.css';
-import { page, addCard, openPopup, closePopup } from './components/utils';
+import { page, addCard, openPopup, closePopup, makeVisible } from './components/utils';
 import { createCard } from './components/card';
-import { formProfile, editProfile, saveProfile, popupAddPlace, formPlace, closeAddPlace, submitFormPlace } from './components/modal';
-import { initialCards } from './components/data';
+import { formProfile, editProfile, saveProfile, popupAddPlace, formPlace, submitFormPlace } from './components/modal';
 import { enableValidation } from './components/validate';
 
-import { getUser } from './components/api';
+import { getUser, getCards } from './components/api';
+import { renderTextProfile } from './components/profile';
 
 
-//загружаем карточки из data.js на страницу
-initialCards.forEach(function (object) {
-  const initialCard = createCard(object.link, object.name);
-  addCard(initialCard);
-});
+//загружаем карточки с бэка на страницу
 
+getCards()
+.then((data) => {
+  data.forEach((item) => {
+    const initialCard = createCard(item.link, item.name);
+    addCard(initialCard)
+  })
+})
+
+
+//закрыть попап
 const popups = page.querySelectorAll('.popup');
 
 popups.forEach((popup) => {
@@ -29,15 +35,8 @@ popups.forEach((popup) => {
 
 //профиль
 
-//привести в нормальный вид!
-const profileName = page.querySelector('.profile__name');
-const profileObout = page.querySelector('.profile__about-myself')
 const profileInfo = page.querySelector('.profile__info')
-
-function renderTextProfile (name, about) {
-  profileName.textContent = name;
-  profileObout.textContent = about;
-}
+const buttonEditProfile = page.querySelector('.profile__button');
 
 function initProfile() {
   getUser()
@@ -45,14 +44,12 @@ function initProfile() {
     return renderTextProfile(user.name, user.about)
   })
   .finally(() => {
-    profileInfo.style.visibility = 'visible';
+    makeVisible(profileInfo);
   })
 }
 
-initProfile()
-//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+initProfile() //берем данные профиля с бэка
 
-const buttonEditProfile = page.querySelector('.profile__button');
 
 buttonEditProfile.addEventListener('click', editProfile);
 
