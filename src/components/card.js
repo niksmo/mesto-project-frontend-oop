@@ -7,16 +7,18 @@ const photo = document.querySelector('.view-photo__image');
 const caption = document.querySelector('.view-photo__caption');
 
 //создать карточку из шаблона
-function createCard (link, name) {
+function createCard (link, name, likes = 0) {
   const galleryItem = galleryItemTemplate.querySelector('.gallery__item').cloneNode(true);
   const likeButton = galleryItem.querySelector('.card__like-btn');
   const deleteButton = galleryItem.querySelector('.card__trash-btn');
   const cardPhoto = galleryItem.querySelector('.card__image');
   const cardTitle = galleryItem.querySelector('.card__title');
+  const likesCounter = galleryItem.querySelector('.card__like-counter');
 
   cardPhoto.src = link;
   cardPhoto.alt = name;
   cardTitle.textContent = name;
+  likesCounter.textContent = likes;
 
   //«лайк»
   likeButton.addEventListener('click', (evt) => {

@@ -3,16 +3,16 @@ import { page, addCard, openPopup, closePopup,renderTextProfile, makeVisible } f
 import { createCard } from './components/card';
 import { formProfile, editProfile, saveProfile, popupAddPlace, formPlace, submitFormPlace } from './components/modal';
 import { enableValidation } from './components/validate';
-
 import { getUser, getCards } from './components/api';
 
 
 //загружаем карточки с бэка на страницу
 
+
 getCards()
 .then((data) => {
   data.forEach((item) => {
-    const initialCard = createCard(item.link, item.name);
+    const initialCard = createCard(item.link, item.name, item.likes.length);
     addCard(initialCard)
   })
 })
