@@ -7,7 +7,7 @@ const photo = document.querySelector('.view-photo__image');
 const caption = document.querySelector('.view-photo__caption');
 
 //создать карточку из шаблона
-function createCard (link, name, likes = 0, ownerID, clientID) {
+function createCard (link, name, likes, ownerID, clientID) {
   const galleryItem = galleryItemTemplate.querySelector('.gallery__item').cloneNode(true);
   const likeButton = galleryItem.querySelector('.card__like-btn');
   const deleteButton = galleryItem.querySelector('.card__trash-btn');
