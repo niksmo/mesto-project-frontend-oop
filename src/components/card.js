@@ -7,7 +7,7 @@ const photo = document.querySelector('.view-photo__image');
 const caption = document.querySelector('.view-photo__caption');
 
 //создать карточку из шаблона
-function createCard (link, name, likes = 0) {
+function createCard (link, name, likes = 0, ownerID, clientID) {
   const galleryItem = galleryItemTemplate.querySelector('.gallery__item').cloneNode(true);
   const likeButton = galleryItem.querySelector('.card__like-btn');
   const deleteButton = galleryItem.querySelector('.card__trash-btn');
@@ -20,14 +20,17 @@ function createCard (link, name, likes = 0) {
   cardTitle.textContent = name;
   likesCounter.textContent = likes;
 
+  if (ownerID === clientID) {
+    deleteButton.addEventListener('click', (evt) => {
+      evt.target.closest('.gallery__item').remove();
+    });
+  } else {
+    deleteButton.remove()
+  }
+
   //«лайк»
   likeButton.addEventListener('click', (evt) => {
     evt.target.classList.toggle('card__like-btn_active');
-  });
-
-  //«удаление»
-  deleteButton.addEventListener('click', (evt) => {
-    evt.target.closest('.gallery__item').remove();
   });
 
   //«просмотр фото»
@@ -38,6 +41,7 @@ function createCard (link, name, likes = 0) {
     viewPhoto (photoSrc, photoTitle, photoTitle);
   });
   
+
   return galleryItem;
 }
 

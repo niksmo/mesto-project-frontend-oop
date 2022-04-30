@@ -6,18 +6,22 @@ import { enableValidation } from './components/validate';
 import { getUser, getCards } from './components/api';
 
 
-//загружаем карточки с бэка на страницу
+//загружаем карточки и профиль с бэка на страницу
+const profileInfo = page.querySelector('.profile__info')
 
-
-getCards()
-.then((data) => {
-  data.forEach((item) => {
-    const initialCard = createCard(item.link, item.name, item.likes.length);
+Promise.all([
+  getCards(),
+  getUser()
+]).then(([cards, user]) => {
+  renderTextProfile(user.name, user.about);
+  cards.forEach((item) => {
+    const initialCard = createCard(item.link, item.name, item.likes.length, item.owner._id, user._id);
     addCard(initialCard)
   })
-})
-.catch((e) => {
-  console.log (e)
+}).catch((e) => {
+    console.log(e)
+}).finally(() => {
+  makeVisible(profileInfo);
 })
 
 
@@ -36,25 +40,7 @@ popups.forEach((popup) => {
 
 
 //профиль
-
-const profileInfo = page.querySelector('.profile__info')
 const buttonEditProfile = page.querySelector('.profile__button');
-
-function initProfile() {
-  getUser()
-  .then((user) => {
-    return renderTextProfile(user.name, user.about)
-  })
-  .finally(() => {
-    makeVisible(profileInfo);
-  })
-  .catch((e) => {
-    console.log (e)
-  })
-}
-
-initProfile() //берем данные профиля с бэка
-
 
 buttonEditProfile.addEventListener('click', editProfile);
 
