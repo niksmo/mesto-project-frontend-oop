@@ -55,14 +55,12 @@ const patchProfile = (object) => {
 
 const putNewCard = (object) => {
   return fetch(`${config.baseUrl}/cards`, {
-    method: 'PUT',
-    header: config.headers,
+    method: 'POST',
+    headers: config.headers,
     body: JSON.stringify(object)
   })
   .then((res) => {
-    if (res.ok) {
-      return
-    } else {
+    if (!res.ok) {
       return Promise.reject(`Ошибка: ${res.status}`)
     }
   })

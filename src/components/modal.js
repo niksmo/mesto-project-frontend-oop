@@ -2,7 +2,7 @@ import { page, addCard, openPopup, closePopup, renderTextProfile } from './utils
 import { createCard } from './card';
 import { settings } from '../index';
 import { toggleButtonState, checkInputValidity } from './validate';
-import { patchProfile } from './api';
+import { patchProfile, putNewCard } from './api';
 
 //профиль
 const profileName = page.querySelector('.profile__name');
@@ -57,8 +57,19 @@ function closeAddPlace() {
 
 
 function submitFormPlace () {
-  const newCard = createCard(urlInput.value, placeInput.value);
-  addCard(newCard);
+  const cardData = {
+    name: placeInput.value,
+    link: urlInput.value
+  }
+  putNewCard(cardData)
+  .then(() => {
+    const newCard = createCard(cardData.link, cardData.name);
+    addCard(newCard);
+  })
+  .catch((e) => console.log(e))
+
+  // const newCard = createCard(urlInput.value, placeInput.value);
+  // addCard(newCard);
   closeAddPlace();
 }
 
