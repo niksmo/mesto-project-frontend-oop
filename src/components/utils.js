@@ -1,6 +1,9 @@
 const page = document.querySelector('.page');
 const galleryList = document.querySelector('.gallery');
 
+const profileName = page.querySelector('.profile__name');
+const profileObout = page.querySelector('.profile__about-myself')
+
 //добавить карточку
 function addCard(card) {
   galleryList.prepend(card);
@@ -25,9 +28,15 @@ function closeByEsc(event) {
   }
 }
 
+//заполнить текст профиля
+function renderTextProfile (name, about) {
+  profileName.textContent = name;
+  profileObout.textContent = about;
+}
+
 //отобразить компонент/лоадер
 function makeVisible (element) {
   element.style.visibility = 'visible';
 }
 
-export { page, addCard, openPopup, closePopup, makeVisible }
+export { page, addCard, openPopup, closePopup, renderTextProfile ,makeVisible }

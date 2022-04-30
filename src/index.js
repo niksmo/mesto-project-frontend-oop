@@ -1,11 +1,10 @@
 import './pages/index.css';
-import { page, addCard, openPopup, closePopup, makeVisible } from './components/utils';
+import { page, addCard, openPopup, closePopup,renderTextProfile, makeVisible } from './components/utils';
 import { createCard } from './components/card';
 import { formProfile, editProfile, saveProfile, popupAddPlace, formPlace, submitFormPlace } from './components/modal';
 import { enableValidation } from './components/validate';
 
 import { getUser, getCards } from './components/api';
-import { renderTextProfile } from './components/profile';
 
 
 //загружаем карточки с бэка на страницу

@@ -1,7 +1,8 @@
-import { page, addCard, openPopup, closePopup } from './utils';
+import { page, addCard, openPopup, closePopup, renderTextProfile } from './utils';
 import { createCard } from './card';
 import { settings } from '../index';
 import { toggleButtonState, checkInputValidity } from './validate';
+import { patchProfile } from './api';
 
 //профиль
 const profileName = page.querySelector('.profile__name');
@@ -23,9 +24,16 @@ function editProfile() {
   openPopup(popupEditProfile);
 }
 
+
 function saveProfile() {
-  profileName.textContent = nameInput.value;
-  profileMyself.textContent = myselfInput.value;
+  const inputData = {
+    name: nameInput.value,
+    about: myselfInput.value
+  }
+  patchProfile(inputData)
+  .then(() => {
+    renderTextProfile(inputData.name, inputData.about)
+  })
   closePopup(popupEditProfile);
 }
 

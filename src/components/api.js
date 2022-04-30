@@ -46,5 +46,23 @@ const getCards = () => {
 }
 
 
+const patchProfile = (object) => {
+  return fetch(`${config.baseUrl}/users/me`, {
+    method: 'PATCH',
+    headers: config.headers,
+    body: JSON.stringify(object)
+  })
+  .then((res) => {
+    if (res.ok) {
+      return
+    } else {
+      return Promise.reject(`Ошибка: ${res.status}`)
+    }
+  })
+  .catch((e) => {
+    console.log (`catch поймал ошибку ${e}`)
+  })
+}
 
-export { getUser, getCards }
+
+export { getUser, patchProfile, getCards }
