@@ -67,9 +67,6 @@ function submitFormPlace () {
     addCard(newCard);
   })
   .catch((e) => console.log(e))
-
-  // const newCard = createCard(urlInput.value, placeInput.value);
-  // addCard(newCard);
   closeAddPlace();
 }
 
