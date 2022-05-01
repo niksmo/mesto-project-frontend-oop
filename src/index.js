@@ -1,7 +1,22 @@
 import './pages/index.css';
 import { page, addCard, openPopup, closePopup,renderTextProfile, makeVisible } from './components/utils';
 import { createCard } from './components/card';
-import { formProfile, editProfile, saveProfile, popupAddPlace, formPlace, submitFormPlace, deleteCardSubmit } from './components/modal';
+
+import {
+  formProfile,
+  editProfile,
+  saveProfile,
+  popupAddPlace,
+  formPlace,
+  submitFormPlace,
+  deleteCardSubmit,
+  renderAvatar,
+  avatar,
+  formAvatar,
+  avatarSubmit,
+  popupAvatarEdit,
+} from './components/modal';
+
 import { enableValidation } from './components/validate';
 import { getUser, getCards } from './components/api';
 
@@ -9,12 +24,11 @@ import { getUser, getCards } from './components/api';
 //загружаем карточки и профиль с бэка на страницу
 const profileInfo = page.querySelector('.profile__info')
 
-// export const userId = {id: ''} пока паркую
-
 Promise.all([
   getCards(),
   getUser()
 ]).then(([cards, user]) => {
+  renderAvatar(user.avatar)
   renderTextProfile(user.name, user.about);
   cards.forEach((item) => {
     const initialCard = createCard(item.link, item.name, item.likes, item.owner._id, user._id, item._id);
@@ -40,7 +54,6 @@ popups.forEach((popup) => {
   })
 })
 
-
 //профиль
 const buttonEditProfile = page.querySelector('.profile__button');
 
@@ -50,6 +63,11 @@ formProfile.addEventListener('submit', (evt) => {
   evt.preventDefault();
   saveProfile();
 });
+
+//аватар
+avatar.addEventListener('click', () => openPopup(popupAvatarEdit));
+formAvatar.addEventListener('submit', avatarSubmit)
+
 
 
 //новая карточка

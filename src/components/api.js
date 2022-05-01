@@ -101,5 +101,17 @@ const deleteLike = (cardId) => {
   })
 }
 
+const updAvatar = (object) => {
+  return fetch(`${config.baseUrl}/users/me/avatar`, {
+    method: 'PATCH',
+    headers: config.headers,
+    body: JSON.stringify(object)
+  })
+  .then((res) => {
+    if (res.ok) {
+      return res.json()
+    } else Promise.reject(`Ошибка: ${res.status}`)
+  })
+}
 
-export { getUser, patchProfile, getCards, putNewCard, deleteCard, putLike, deleteLike }
+export { getUser, patchProfile, getCards, putNewCard, deleteCard, putLike, deleteLike, updAvatar }

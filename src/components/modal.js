@@ -2,7 +2,7 @@ import { page, addCard, openPopup, closePopup, renderTextProfile } from './utils
 import { createCard, removebleCard } from './card';
 import { settings } from '../index';
 import { toggleButtonState, checkInputValidity } from './validate';
-import { patchProfile, putNewCard, deleteCard } from './api';
+import { patchProfile, putNewCard, deleteCard, updAvatar } from './api';
 
 //профиль
 const profileName = page.querySelector('.profile__name');
@@ -38,6 +38,30 @@ function saveProfile() {
     console.log (e)
   })
   closePopup(popupEditProfile)
+}
+
+//аватар
+const avatar = page.querySelector('.profile__avatar');
+const formAvatar = page.querySelector('.form_type_avatar');
+const avatarInputUrl = page.querySelector('.form__input_el_avatar-url');
+const popupAvatarEdit = page.querySelector('.popup_feature_avatar');
+
+function avatarSubmit (evt) {
+  evt.preventDefault();
+  const object = {avatar: ''};
+  object.avatar = avatarInputUrl.value;
+  updAvatar(object)
+  .then((res) => {
+    renderAvatar(res.avatar);
+    closePopup(popupAvatarEdit)
+  })
+  .catch((e) => {
+    console.log(e);
+  })
+}
+
+function renderAvatar (url) {
+  avatar.style.backgroundImage = `url(${url})`;
 }
 
 //добавление карточки
@@ -88,4 +112,20 @@ function deleteCardSubmit (evt) {
 }
 
 
-export { popupEditProfile, formProfile, editProfile, saveProfile, popupAddPlace, formPlace, closeAddPlace, submitFormPlace, popupDeleteCard, deleteCardSubmit }
+export { 
+  popupEditProfile, 
+  formProfile,
+  editProfile,
+  saveProfile,
+  popupAddPlace, 
+  formPlace, 
+  closeAddPlace, 
+  submitFormPlace, 
+  popupDeleteCard, 
+  deleteCardSubmit,
+  renderAvatar,
+  avatar,
+  formAvatar,
+  avatarSubmit,
+  popupAvatarEdit,
+}

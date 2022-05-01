@@ -11,7 +11,8 @@
   </header>
   <main class="content">
     <section class="profile">
-      <img src="<%=require('./images/avatar-image.jpg')%>" alt="аватар" class="profile__avatar-image">
+      <button class="profile__avatar" type="button" aria-label="аватар">
+      </button>
       <div class="profile__info">
         <h1 class="profile__name"></h1>
         <p class="profile__about-myself"></p>
@@ -27,6 +28,19 @@
   <footer class="footer">
     <p class="footer__copyright">&copy;&nbsp;2020 Mesto Russia</p>
   </footer>
+  <div class="popup popup_feature_avatar">
+    <div class="popup__container popup__container_el_form">
+      <form class="form form_type_avatar popup__form" name="avatar" autocomplete="off" novalidate>
+        <h2 class="form__heading">Обновить аватар</h2>
+        <label class="form__field">
+          <input class="form__input form__input_el_avatar-url popup__input" type="url" name="avatar-url" id="avatar-url-input" required placeholder="Ссылка на изображение">
+          <span class="form__input-error avatar-url-input-error popup__error"></span>
+        </label>
+        <button class="form__btn popup__button" type="submit">Сохранить</button>
+        <button class="button button_type_close popup__close" type="button" aria-label="закрыть"></button>
+      </form>
+    </div>
+  </div>
   <div class="popup popup_feature_profile">
     <div class="popup__container popup__container_el_form">
       <form class="form form_type_profile popup__form" name="profile" autocomplete="off" novalidate>
