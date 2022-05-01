@@ -1,4 +1,4 @@
-import { page, addCard, openPopup, closePopup, renderTextProfile } from './utils';
+import { page, addCard, openPopup, closePopup, renderTextProfile, loadingFormStart, loadingFormEnd } from './utils';
 import { createCard, removebleCard } from './card';
 import { settings } from '../index';
 import { toggleButtonState, checkInputValidity } from './validate';
@@ -11,12 +11,12 @@ const popupEditProfile = page.querySelector('.popup_feature_profile')
 const formProfile = page.querySelector('.form_type_profile');
 const nameInput = formProfile.querySelector('.form__input_el_name');
 const myselfInput = formProfile.querySelector('.form__input_el_myself');
+const submitBtnProfile = formProfile.querySelector('.form__btn');
 
 function editProfile() {
   nameInput.value = profileName.textContent;
   myselfInput.value = profileMyself.textContent;
   const inputList = [nameInput, myselfInput];
-  const submitBtnProfile = formProfile.querySelector('.form__btn');
   inputList.forEach((input) => {
     checkInputValidity(formProfile, input, settings)
   })
@@ -30,12 +30,16 @@ function saveProfile() {
     name: nameInput.value,
     about: myselfInput.value
   }
+  loadingFormStart(submitBtnProfile)
   patchProfile(inputData)
   .then(() => {
     renderTextProfile(inputData.name, inputData.about)
   })
   .catch((e) => {
     console.log (e)
+  })
+  .finally(() => {
+    loadingFormEnd(submitBtnProfile)
   })
   closePopup(popupEditProfile)
 }
@@ -51,6 +55,7 @@ function avatarSubmit (evt) {
   evt.preventDefault();
   const object = {avatar: ''};
   object.avatar = avatarInputUrl.value;
+  loadingFormStart(submitBtnAvatar)
   updAvatar(object)
   .then((res) => {
     renderAvatar(res.avatar);
@@ -61,23 +66,28 @@ function avatarSubmit (evt) {
   .catch((e) => {
     console.log(e);
   })
+  .finally(() => {
+    loadingFormEnd(submitBtnAvatar)
+  })
 }
 
 function renderAvatar (url) {
   avatar.style.backgroundImage = `url(${url})`;
 }
 
+
+
 //добавление карточки
 const popupAddPlace = page.querySelector('.popup_feature_place');
 const formPlace = page.querySelector('.form_type_place');
 const placeInput = formPlace.querySelector('.form__input_el_name');
 const urlInput = formPlace.querySelector('.form__input_el_url');
+const submitBtnPlace = formPlace.querySelector('.form__btn')
 
 
 function closeAddPlace() {
   closePopup(popupAddPlace);
   const inputList = [placeInput, urlInput];
-  const submitBtnPlace = formPlace.querySelector('.form__btn')
   formPlace.reset();
   toggleButtonState(inputList, submitBtnPlace, settings)
 }
@@ -88,12 +98,16 @@ function submitFormPlace () {
     name: placeInput.value,
     link: urlInput.value
   }
+  loadingFormStart(submitBtnPlace)
   putNewCard(cardData)
   .then((res) => {
     const newCard = createCard(cardData.link, cardData.name, [], res.owner._id, res.owner._id, res._id);
     addCard(newCard);
   })
   .catch((e) => console.log(e))
+  .finally(() => {
+    loadingFormEnd(submitBtnPlace)
+  })
   closeAddPlace();
 }
 

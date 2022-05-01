@@ -1,6 +1,5 @@
 const page = document.querySelector('.page');
 const galleryList = document.querySelector('.gallery');
-
 const profileName = page.querySelector('.profile__name');
 const profileObout = page.querySelector('.profile__about-myself')
 
@@ -52,9 +51,19 @@ function renderLikes (counter, button, likes, clientId) {
 }
 
 
-//отобразить компонент/лоадер
+//отобразить лоадеры
 function makeVisible (element) {
   element.style.visibility = 'visible';
 }
 
-export { page, addCard, openPopup, closePopup, renderTextProfile, renderLikes, makeVisible}
+function loadingFormStart (button) {
+  button.textContent = 'Сохранение...';
+  button.disabled = true;
+}
+
+function loadingFormEnd (button) {
+  button.textContent = 'Сохранить';
+  button.disabled = false;
+}
+
+export { page, addCard, openPopup, closePopup, renderTextProfile, renderLikes, makeVisible, loadingFormStart, loadingFormEnd }
