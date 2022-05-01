@@ -1,8 +1,8 @@
 import { page, addCard, openPopup, closePopup, renderTextProfile } from './utils';
-import { createCard } from './card';
+import { createCard, removebleCard } from './card';
 import { settings } from '../index';
 import { toggleButtonState, checkInputValidity } from './validate';
-import { patchProfile, putNewCard } from './api';
+import { patchProfile, putNewCard, deleteCard } from './api';
 
 //профиль
 const profileName = page.querySelector('.profile__name');
@@ -62,13 +62,31 @@ function submitFormPlace () {
     link: urlInput.value
   }
   putNewCard(cardData)
-  .then(() => {
-    const newCard = createCard(cardData.link, cardData.name);
+  .then((res) => {
+    const newCard = createCard(cardData.link, cardData.name, 0, res.owner._id, res.owner._id, res._id);
     addCard(newCard);
   })
   .catch((e) => console.log(e))
   closeAddPlace();
 }
 
+//подтверждение удаления карточки
+const popupDeleteCard = page.querySelector('.popup_feature_delete');
 
-export { popupEditProfile, formProfile, editProfile, saveProfile, popupAddPlace, formPlace, closeAddPlace, submitFormPlace }
+function deleteCardSubmit (evt) {
+  evt.preventDefault();
+  console.log(removebleCard);
+  deleteCard(removebleCard.cardId)
+  .then(() => {
+    removebleCard.element.remove()
+    removebleCard.element = undefined;
+    removebleCard.cardId = undefined;
+    closePopup(popupDeleteCard);
+  })
+  .catch((e) => {
+    console.log(e)
+  })
+}
+
+
+export { popupEditProfile, formProfile, editProfile, saveProfile, popupAddPlace, formPlace, closeAddPlace, submitFormPlace, popupDeleteCard, deleteCardSubmit }

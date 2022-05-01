@@ -55,10 +55,23 @@ const putNewCard = (object) => {
     body: JSON.stringify(object)
   })
   .then((res) => {
+    if (res.ok) {
+      return res.json()
+    } else Promise.reject(`Ошибка: ${res.status}`)
+  })
+}
+
+const deleteCard = (cardId) => {
+  return fetch(`${config.baseUrl}/cards/${cardId}`, {
+    method: 'DELETE',
+    headers: config.headers
+  })
+  .then((res) => {
     if (!res.ok) {
-      return Promise.reject(`Ошибка: ${res.status}`)
+      return Promise.reject(`Ошибка: ${res.status}`);
     }
   })
 }
 
-export { getUser, patchProfile, getCards, putNewCard }
+
+export { getUser, patchProfile, getCards, putNewCard, deleteCard }

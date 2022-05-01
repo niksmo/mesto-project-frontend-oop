@@ -1,5 +1,8 @@
-
 import { openPopup } from "./utils";
+
+import { popupDeleteCard } from "./modal";
+
+export let removebleCard = {} //глобальная переменная для удаления карточки
 
 const galleryItemTemplate = document.querySelector('#gallery__item').content;
 const popupViewPhoto = document.querySelector('.popup_feature_photo');
@@ -7,7 +10,7 @@ const photo = document.querySelector('.view-photo__image');
 const caption = document.querySelector('.view-photo__caption');
 
 //создать карточку из шаблона
-function createCard (link, name, likes, ownerID, clientID) {
+function createCard (link, name, likes, ownerId, clientId, cardId) {
   const galleryItem = galleryItemTemplate.querySelector('.gallery__item').cloneNode(true);
   const likeButton = galleryItem.querySelector('.card__like-btn');
   const deleteButton = galleryItem.querySelector('.card__trash-btn');
@@ -19,10 +22,13 @@ function createCard (link, name, likes, ownerID, clientID) {
   cardPhoto.alt = name;
   cardTitle.textContent = name;
   likesCounter.textContent = likes;
+  galleryItem.dataset.id = cardId;
 
-  if (ownerID === clientID) {
+  if (ownerId === clientId) {
     deleteButton.addEventListener('click', (evt) => {
-      evt.target.closest('.gallery__item').remove();
+      removebleCard.element = evt.currentTarget.closest('.gallery__item')
+      removebleCard.cardId = removebleCard.element.dataset.id
+      openPopup(popupDeleteCard)
     });
   } else {
     deleteButton.remove()
@@ -54,4 +60,4 @@ function viewPhoto (src, alt, title) {
   openPopup(popupViewPhoto)
 }
 
-export { createCard, popupViewPhoto }
+export { createCard }

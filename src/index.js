@@ -1,7 +1,7 @@
 import './pages/index.css';
 import { page, addCard, openPopup, closePopup,renderTextProfile, makeVisible } from './components/utils';
 import { createCard } from './components/card';
-import { formProfile, editProfile, saveProfile, popupAddPlace, formPlace, submitFormPlace } from './components/modal';
+import { formProfile, editProfile, saveProfile, popupAddPlace, formPlace, submitFormPlace, deleteCardSubmit } from './components/modal';
 import { enableValidation } from './components/validate';
 import { getUser, getCards } from './components/api';
 
@@ -15,7 +15,7 @@ Promise.all([
 ]).then(([cards, user]) => {
   renderTextProfile(user.name, user.about);
   cards.forEach((item) => {
-    const initialCard = createCard(item.link, item.name, item.likes.length, item.owner._id, user._id);
+    const initialCard = createCard(item.link, item.name, item.likes.length, item.owner._id, user._id, item._id);
     addCard(initialCard)
   })
 }).catch((e) => {
@@ -62,6 +62,10 @@ formPlace.addEventListener('submit', (evt) => {
   submitFormPlace();
 })
 
+//удаление карточки
+const formDeleteCard = page.querySelector('.form_type_delete');
+
+formDeleteCard.addEventListener('submit', deleteCardSubmit)
 
 //валидация форм
 export const settings = {
