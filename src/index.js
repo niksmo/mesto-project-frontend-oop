@@ -1,17 +1,47 @@
 import './pages/index.css';
-import { page, addCard, openPopup, closePopup } from './components/utils';
-import { createCard, popupViewPhoto } from './components/card';
-import { popupEditProfile, formProfile, editProfile, saveProfile, popupAddPlace, formPlace, closeAddPlace, submitFormPlace } from './components/modal';
-import { initialCards } from './components/data';
+import { page, addCard, openPopup, closePopup,renderTextProfile, makeVisible } from './components/utils';
+import { createCard } from './components/card';
+
+import {
+  formProfile,
+  editProfile,
+  saveProfile,
+  popupAddPlace,
+  formPlace,
+  submitFormPlace,
+  deleteCardSubmit,
+  renderAvatar,
+  avatar,
+  formAvatar,
+  avatarSubmit,
+  popupAvatarEdit,
+} from './components/modal';
+
 import { enableValidation } from './components/validate';
+import { getUser, getCards } from './components/api';
 
 
-//загружаем карточки из data.js на страницу
-initialCards.forEach(function (object) {
-  const initialCard = createCard(object.link, object.name);
-  addCard(initialCard);
-});
+//загружаем карточки и профиль с бэка на страницу
+const profileInfo = page.querySelector('.profile__info')
 
+Promise.all([
+  getCards(),
+  getUser()
+]).then(([cards, user]) => {
+  renderAvatar(user.avatar)
+  renderTextProfile(user.name, user.about);
+  cards.forEach((item) => {
+    const initialCard = createCard(item.link, item.name, item.likes, item.owner._id, user._id, item._id);
+    addCard(initialCard)
+  })
+}).catch((e) => {
+    console.log(e)
+}).finally(() => {
+  makeVisible(profileInfo);
+})
+
+
+//закрыть попап
 const popups = page.querySelectorAll('.popup');
 
 popups.forEach((popup) => {
@@ -24,7 +54,6 @@ popups.forEach((popup) => {
   })
 })
 
-
 //профиль
 const buttonEditProfile = page.querySelector('.profile__button');
 
@@ -34,6 +63,11 @@ formProfile.addEventListener('submit', (evt) => {
   evt.preventDefault();
   saveProfile();
 });
+
+//аватар
+avatar.addEventListener('click', () => openPopup(popupAvatarEdit));
+formAvatar.addEventListener('submit', avatarSubmit)
+
 
 
 //новая карточка
@@ -48,6 +82,10 @@ formPlace.addEventListener('submit', (evt) => {
   submitFormPlace();
 })
 
+//удаление карточки
+const formDeleteCard = page.querySelector('.form_type_delete');
+
+formDeleteCard.addEventListener('submit', deleteCardSubmit)
 
 //валидация форм
 export const settings = {

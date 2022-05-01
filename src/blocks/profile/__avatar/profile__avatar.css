@@ -1,0 +1,59 @@
+.profile__avatar {
+  display: block;
+  overflow: hidden;
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  margin-bottom: 26px;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-image: none;
+  background-size: cover;
+  position: relative;
+  background-color: transparent;
+  background-position: center;
+}
+
+@media (min-width: 667px) {
+  .profile__avatar {
+    margin-bottom: 0;
+  }
+}
+
+.profile__avatar::before {
+  background-color: transparent;
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: block;
+  visibility: hidden;
+  transition: background-color .2s linear;
+}
+
+.profile__avatar:hover::before {
+  background-color: rgba(0, 0, 0, .8);
+  visibility: visible;
+}
+
+.profile__avatar::after {
+  content: '';
+  background-image: url(../../../images/pencil.svg);
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-13px, -13px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .2s linear, visibility .2s linear;
+}
+
+.profile__avatar:hover::after {
+  opacity: 1;
+  visibility: visible;
+}

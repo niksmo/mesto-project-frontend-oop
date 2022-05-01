@@ -1,31 +1,58 @@
+import { openPopup, renderLikes } from "./utils";
+import { popupDeleteCard } from "./modal";
+import { deleteLike, putLike } from "./api";
+// import { userId } from "../index"; пока паркую
 
-import { openPopup } from "./utils";
+export let removebleCard = {} //глобальная переменная для удаления карточки
 
 const galleryItemTemplate = document.querySelector('#gallery__item').content;
 const popupViewPhoto = document.querySelector('.popup_feature_photo');
 const photo = document.querySelector('.view-photo__image');
 const caption = document.querySelector('.view-photo__caption');
 
+
+
 //создать карточку из шаблона
-function createCard (link, name) {
+function createCard (link, name, likes, ownerId, clientId, cardId) {
   const galleryItem = galleryItemTemplate.querySelector('.gallery__item').cloneNode(true);
   const likeButton = galleryItem.querySelector('.card__like-btn');
   const deleteButton = galleryItem.querySelector('.card__trash-btn');
   const cardPhoto = galleryItem.querySelector('.card__image');
   const cardTitle = galleryItem.querySelector('.card__title');
+  const likesCounter = galleryItem.querySelector('.card__like-counter');
 
   cardPhoto.src = link;
   cardPhoto.alt = name;
   cardTitle.textContent = name;
+  galleryItem.dataset.id = cardId;
+
+  if (ownerId === clientId) {
+    deleteButton.addEventListener('click', (evt) => {
+      removebleCard.element = evt.currentTarget.closest('.gallery__item')
+      removebleCard.cardId = removebleCard.element.dataset.id
+      openPopup(popupDeleteCard)
+    });
+  } else {
+    deleteButton.remove()
+  }
 
   //«лайк»
-  likeButton.addEventListener('click', (evt) => {
-    evt.target.classList.toggle('card__like-btn_active');
-  });
+  renderLikes(likesCounter, likeButton, likes, clientId);
 
-  //«удаление»
-  deleteButton.addEventListener('click', (evt) => {
-    evt.target.closest('.gallery__item').remove();
+  likeButton.addEventListener('click', (evt) => {
+    const cardId = evt.currentTarget.closest('.gallery__item').dataset.id;
+
+    if (!evt.target.classList.contains('card__like-btn_active')) {
+      putLike(cardId)
+      .then((res) => {
+        renderLikes(likesCounter, likeButton, res.likes, clientId)
+      })
+    } else {
+      deleteLike(cardId)
+      .then((res) => {
+        renderLikes(likesCounter, likeButton, res.likes, clientId)
+      })
+    }
   });
 
   //«просмотр фото»
@@ -36,6 +63,7 @@ function createCard (link, name) {
     viewPhoto (photoSrc, photoTitle, photoTitle);
   });
   
+
   return galleryItem;
 }
 
@@ -48,4 +76,5 @@ function viewPhoto (src, alt, title) {
   openPopup(popupViewPhoto)
 }
 
-export { createCard, popupViewPhoto }
+
+export { createCard }
