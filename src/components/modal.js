@@ -45,6 +45,7 @@ const avatar = page.querySelector('.profile__avatar');
 const formAvatar = page.querySelector('.form_type_avatar');
 const avatarInputUrl = page.querySelector('.form__input_el_avatar-url');
 const popupAvatarEdit = page.querySelector('.popup_feature_avatar');
+const submitBtnAvatar = formAvatar.querySelector('.form__btn');
 
 function avatarSubmit (evt) {
   evt.preventDefault();
@@ -54,6 +55,8 @@ function avatarSubmit (evt) {
   .then((res) => {
     renderAvatar(res.avatar);
     closePopup(popupAvatarEdit)
+    formAvatar.reset()
+    toggleButtonState([avatarInputUrl], submitBtnAvatar, settings)
   })
   .catch((e) => {
     console.log(e);
