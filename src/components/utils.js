@@ -34,9 +34,27 @@ function renderTextProfile (name, about) {
   profileObout.textContent = about;
 }
 
+//отобразаить лайки
+function containsClientLikes (likes, clientId) {
+  const result = likes.some((like) => {
+    return like._id === clientId;
+  })
+  return result
+}
+
+function renderLikes (counter, button, likes, clientId) {
+  if (containsClientLikes(likes, clientId)) {
+    button.classList.add('card__like-btn_active')
+  } else {
+    button.classList.remove('card__like-btn_active')
+  }
+  counter.textContent = likes.length;
+}
+
+
 //отобразить компонент/лоадер
 function makeVisible (element) {
   element.style.visibility = 'visible';
 }
 
-export { page, addCard, openPopup, closePopup, renderTextProfile ,makeVisible }
+export { page, addCard, openPopup, closePopup, renderTextProfile, renderLikes, makeVisible}

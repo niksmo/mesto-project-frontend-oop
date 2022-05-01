@@ -63,7 +63,7 @@ function submitFormPlace () {
   }
   putNewCard(cardData)
   .then((res) => {
-    const newCard = createCard(cardData.link, cardData.name, 0, res.owner._id, res.owner._id, res._id);
+    const newCard = createCard(cardData.link, cardData.name, [], res.owner._id, res.owner._id, res._id);
     addCard(newCard);
   })
   .catch((e) => console.log(e))
@@ -75,7 +75,6 @@ const popupDeleteCard = page.querySelector('.popup_feature_delete');
 
 function deleteCardSubmit (evt) {
   evt.preventDefault();
-  console.log(removebleCard);
   deleteCard(removebleCard.cardId)
   .then(() => {
     removebleCard.element.remove()

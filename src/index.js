@@ -9,13 +9,15 @@ import { getUser, getCards } from './components/api';
 //загружаем карточки и профиль с бэка на страницу
 const profileInfo = page.querySelector('.profile__info')
 
+// export const userId = {id: ''} пока паркую
+
 Promise.all([
   getCards(),
   getUser()
 ]).then(([cards, user]) => {
   renderTextProfile(user.name, user.about);
   cards.forEach((item) => {
-    const initialCard = createCard(item.link, item.name, item.likes.length, item.owner._id, user._id, item._id);
+    const initialCard = createCard(item.link, item.name, item.likes, item.owner._id, user._id, item._id);
     addCard(initialCard)
   })
 }).catch((e) => {

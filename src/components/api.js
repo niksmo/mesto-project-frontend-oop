@@ -73,5 +73,33 @@ const deleteCard = (cardId) => {
   })
 }
 
+const putLike = (cardId) => {
+  return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
+    method: 'PUT',
+    headers: config.headers
+  })
+  .then((res) => {
+    if (res.ok) {
+      return res.json();
+    } else {
+      return Promise.reject(`Ошибка: ${res.status}`)
+    }
+  })
+}
 
-export { getUser, patchProfile, getCards, putNewCard, deleteCard }
+const deleteLike = (cardId) => {
+  return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
+    method: 'DELETE',
+    headers: config.headers
+  })
+  .then((res) => {
+    if (res.ok) {
+      return res.json();
+    } else {
+      return Promise.reject(`Ошибка: ${res.status}`)
+    }
+  })
+}
+
+
+export { getUser, patchProfile, getCards, putNewCard, deleteCard, putLike, deleteLike }
