@@ -39,7 +39,7 @@ function saveProfile() {
     console.log (e)
   })
   .finally(() => {
-    loadingFormEnd(submitBtnProfile)
+    loadingFormEnd(submitBtnProfile, 'Сохранить')
   })
 }
 
