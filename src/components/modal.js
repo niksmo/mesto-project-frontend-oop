@@ -55,7 +55,7 @@ function avatarSubmit (evt) {
   evt.preventDefault();
   const object = {avatar: ''};
   object.avatar = avatarInputUrl.value;
-  loadingFormStart(submitBtnAvatar)
+  loadingFormStart(submitBtnAvatar);
   updAvatar(object)
   .then((res) => {
     renderAvatar(res.avatar);
@@ -67,7 +67,7 @@ function avatarSubmit (evt) {
     console.log(e);
   })
   .finally(() => {
-    loadingFormEnd(submitBtnAvatar)
+    loadingFormEnd(submitBtnAvatar, 'Сохранить')
   })
 }
 
@@ -98,17 +98,17 @@ function submitFormPlace () {
     name: placeInput.value,
     link: urlInput.value
   }
-  loadingFormStart(submitBtnPlace)
+  loadingFormStart(submitBtnPlace);
   putNewCard(cardData)
   .then((res) => {
     const newCard = createCard(cardData.link, cardData.name, [], res.owner._id, res.owner._id, res._id);
     addCard(newCard);
+    closeAddPlace();
   })
   .catch((e) => console.log(e))
   .finally(() => {
-    loadingFormEnd(submitBtnPlace)
+    loadingFormEnd(submitBtnPlace, 'Создать');
   })
-  closeAddPlace();
 }
 
 //подтверждение удаления карточки

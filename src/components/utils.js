@@ -61,8 +61,8 @@ function loadingFormStart (button) {
   button.disabled = true;
 }
 
-function loadingFormEnd (button) {
-  button.textContent = 'Сохранить';
+function loadingFormEnd (button, text) {
+  button.textContent = text;
   button.disabled = false;
 }
 
