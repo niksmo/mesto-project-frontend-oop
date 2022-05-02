@@ -1,6 +1,5 @@
-import { page, addCard, openPopup, closePopup, renderTextProfile, loadingFormStart, loadingFormEnd } from './utils';
+import { page, addCard, openPopup, closePopup, settings, renderTextProfile, loadingFormStart, loadingFormEnd } from './utils';
 import { createCard, removebleCard } from './card';
-import { settings } from './index';
 import { toggleButtonState, checkInputValidity } from './validate';
 import { patchProfile, putNewCard, deleteCard, updAvatar } from './api';
 
@@ -34,6 +33,7 @@ function saveProfile() {
   patchProfile(inputData)
   .then(() => {
     renderTextProfile(inputData.name, inputData.about)
+    closePopup(popupEditProfile)
   })
   .catch((e) => {
     console.log (e)
@@ -41,7 +41,6 @@ function saveProfile() {
   .finally(() => {
     loadingFormEnd(submitBtnProfile)
   })
-  closePopup(popupEditProfile)
 }
 
 //аватар

@@ -1,5 +1,5 @@
 import '../pages/index.css';
-import { page, addCard, openPopup, closePopup,renderTextProfile, makeVisible } from './utils';
+import { page, addCard, openPopup, closePopup, settings, renderTextProfile, makeVisible } from './utils';
 import { createCard } from './card';
 
 import {
@@ -87,14 +87,5 @@ const formDeleteCard = page.querySelector('.form_type_delete');
 
 formDeleteCard.addEventListener('submit', deleteCardSubmit)
 
-//валидация форм
-export const settings = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible'
-};
 
 enableValidation(settings);

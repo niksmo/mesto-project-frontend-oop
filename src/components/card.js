@@ -1,14 +1,31 @@
-import { openPopup, renderLikes } from "./utils";
+import { openPopup } from "./utils";
 import { popupDeleteCard } from "./modal";
 import { deleteLike, putLike } from "./api";
-// import { userId } from "../index"; пока паркую
 
-export let removebleCard = {} //глобальная переменная для удаления карточки
+export const removebleCard = {} //глобальная переменная для удаления карточки
 
 const galleryItemTemplate = document.querySelector('#gallery__item').content;
 const popupViewPhoto = document.querySelector('.popup_feature_photo');
 const photo = document.querySelector('.view-photo__image');
 const caption = document.querySelector('.view-photo__caption');
+
+
+//показать лайки пользователя
+function containsClientLikes (likes, clientId) {
+  const result = likes.some((like) => {
+    return like._id === clientId;
+  })
+  return result
+}
+
+function renderLikes (counter, button, likes, clientId) {
+  if (containsClientLikes(likes, clientId)) {
+    button.classList.add('card__like-btn_active')
+  } else {
+    button.classList.remove('card__like-btn_active')
+  }
+  counter.textContent = likes.length;
+}
 
 
 
@@ -45,12 +62,18 @@ function createCard (link, name, likes, ownerId, clientId, cardId) {
     if (!evt.target.classList.contains('card__like-btn_active')) {
       putLike(cardId)
       .then((res) => {
-        renderLikes(likesCounter, likeButton, res.likes, clientId)
+        renderLikes(likesCounter, likeButton, res.likes, clientId);
+      })
+      .catch((e) => {
+        console.log(e);
       })
     } else {
       deleteLike(cardId)
       .then((res) => {
-        renderLikes(likesCounter, likeButton, res.likes, clientId)
+        renderLikes(likesCounter, likeButton, res.likes, clientId);
+      })
+      .catch((e) => {
+        console.log(e);
       })
     }
   });
