@@ -1,6 +1,6 @@
 import { page, addCard, openPopup, closePopup, renderTextProfile, loadingFormStart, loadingFormEnd } from './utils';
 import { createCard, removebleCard } from './card';
-import { settings } from '../index';
+import { settings } from './index';
 import { toggleButtonState, checkInputValidity } from './validate';
 import { patchProfile, putNewCard, deleteCard, updAvatar } from './api';
 

@@ -1,6 +1,6 @@
-import './pages/index.css';
-import { page, addCard, openPopup, closePopup,renderTextProfile, makeVisible } from './components/utils';
-import { createCard } from './components/card';
+import '../pages/index.css';
+import { page, addCard, openPopup, closePopup,renderTextProfile, makeVisible } from './utils';
+import { createCard } from './card';
 
 import {
   formProfile,
@@ -15,10 +15,10 @@ import {
   formAvatar,
   avatarSubmit,
   popupAvatarEdit,
-} from './components/modal';
+} from './modal';
 
-import { enableValidation } from './components/validate';
-import { getUser, getCards } from './components/api';
+import { enableValidation } from './validate';
+import { getUser, getCards } from './api';
 
 
 //загружаем карточки и профиль с бэка на страницу
