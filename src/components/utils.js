@@ -3,6 +3,16 @@ const galleryList = document.querySelector('.gallery');
 const profileName = page.querySelector('.profile__name');
 const profileObout = page.querySelector('.profile__about-myself')
 
+//валидация форм
+const settings = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+};
+
 //добавить карточку
 function addCard(card) {
   galleryList.prepend(card);
@@ -33,22 +43,6 @@ function renderTextProfile (name, about) {
   profileObout.textContent = about;
 }
 
-//отобразаить лайки
-function containsClientLikes (likes, clientId) {
-  const result = likes.some((like) => {
-    return like._id === clientId;
-  })
-  return result
-}
-
-function renderLikes (counter, button, likes, clientId) {
-  if (containsClientLikes(likes, clientId)) {
-    button.classList.add('card__like-btn_active')
-  } else {
-    button.classList.remove('card__like-btn_active')
-  }
-  counter.textContent = likes.length;
-}
 
 
 //отобразить лоадеры
@@ -61,9 +55,9 @@ function loadingFormStart (button) {
   button.disabled = true;
 }
 
-function loadingFormEnd (button) {
-  button.textContent = 'Сохранить';
+function loadingFormEnd (button, text) {
+  button.textContent = text;
   button.disabled = false;
 }
 
-export { page, addCard, openPopup, closePopup, renderTextProfile, renderLikes, makeVisible, loadingFormStart, loadingFormEnd }
+export { page, addCard, openPopup, closePopup, settings, renderTextProfile, makeVisible, loadingFormStart, loadingFormEnd }
