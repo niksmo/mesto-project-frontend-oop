@@ -49,31 +49,3 @@ Promise.all([
   cardList.renderItems();
 })
 .catch(err => console.log(err))
-
-// api.getCards()
-// .then(data => {
-//   const cardList = new Section({
-//     data: data,
-//     renderer: (item) => {
-//       const card = new Card({
-//         data: item,
-//         rendererLike: (cardId) => {
-//           api.putLike(cardId)
-//           .then(data => card.renderLike({ likes: data.likes.length, liked: true }))
-//           .catch(err => console.log(err))
-//         },
-//         rendererUnlike: (cardId) => {
-//           api.deleteLike(cardId)
-//           .then(data => card.renderLike({ likes: data.likes.length, liked: false}))
-//         }
-//       }, '#gallery__item');
-//       const cardElement = card.generate();
-//       cardList.setItem(cardElement);
-//     }
-//   },
-//   '.gallery');
-
-//   cardList.renderItems();
-
-// })
-// .catch(err => { console.log(err) })
