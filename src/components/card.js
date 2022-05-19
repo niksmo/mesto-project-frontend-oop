@@ -3,12 +3,14 @@ export const removebleCard = {} //глобальная переменная дл
 
 
 export default class Card {
-    constructor(data, selector) {
+    constructor({ data, rendererLike, rendererUnlike }, selector) {
         this._image = data.link;
         this._title = data.name;
         this._owner = data.owner._id;
         this._cardId = data._id;
-        this._likes = data.likes;
+        this._likes = data.likes; //про этот я забыл
+        this._rendererLike = rendererLike;
+        this._rendererUnlike = rendererUnlike;
         this._selector = selector;
     };
     
@@ -21,8 +23,17 @@ export default class Card {
         return cardElement;
     };
     
+    _isLiked() {
+        return this._element.querySelector('.card__like-btn').classList.contains('card__like-btn_active')
+        
+    }
+
     _handleLikeClick() {
-        this._element.querySelector('.card__like-btn').classList.add('card__like-btn_active');
+        if (this._isLiked()) {
+            this._rendererUnlike(this._cardId);
+        } else {
+            this._rendererLike(this._cardId);
+        }
     };
     
     _handleImageClick() {
@@ -47,6 +58,16 @@ export default class Card {
         });
     };
     
+    renderLike({ likes, liked }) {
+        if (liked) {
+            this._element.querySelector('.card__like-btn').classList.add('card__like-btn_active');
+        } else {
+            this._element.querySelector('.card__like-btn').classList.remove('card__like-btn_active');
+        }
+        
+        this._element.querySelector('.card__like-counter').textContent = likes;
+    }
+
     generate() {
         this._element = this._getElement();
         this._setEventListeners();
@@ -55,7 +76,6 @@ export default class Card {
         this._element.querySelector('.card__like-counter').textContent = this._likes.length;
 
         return this._element;
-        //должен краситься наш лайк
     }
 
 }
