@@ -1,13 +1,6 @@
-import { openPopup } from "./utils";
-import { popupDeleteCard } from "./modal";
-import { deleteLike, putLike } from "./api";
 
 export const removebleCard = {} //глобальная переменная для удаления карточки
 
-// const galleryItemTemplate = document.querySelector('#gallery__item').content;
-// const popupViewPhoto = document.querySelector('.popup_feature_photo');
-// const photo = document.querySelector('.view-photo__image');
-// const caption = document.querySelector('.view-photo__caption');
 
 export default class Card {
     constructor(data, selector) {
@@ -16,31 +9,32 @@ export default class Card {
         this._owner = data.owner._id;
         this._cardId = data._id;
         this._likes = data.likes;
+        this._selector = selector;
     };
-
+    
     _getElement() {
         const cardElement = document
-            .querySelector('#gallery__item')
-            .content
-            .querySelector('.gallary__item')
-            .cloneNode(true);
+        .querySelector(this._selector)
+        .content
+        .querySelector('.gallery__item')
+        .cloneNode(true);
         return cardElement;
     };
-
+    
     _handleLikeClick() {
         this._element.querySelector('.card__like-btn').classList.add('card__like-btn_active');
     };
-
+    
     _handleImageClick() {
         console.log('Open Image Popup')
-            //There should be a function to open image popup
+        //There should be a function to open image popup
     };
-
+    
     _handleTrashClick() {
         console.log('Delete card');
         //There should be a function to delete image card
     };
-
+    
     _setEventListeners() {
         this._element.querySelector('.card__like-btn').addEventListener('click', () => {
             this._handleLikeClick()
@@ -52,21 +46,28 @@ export default class Card {
             this._handleTrashClick();
         });
     };
-
-
-
+    
     generate() {
         this._element = this._getElement();
         this._setEventListeners();
         this._element.querySelector('.card__image').src = this._image;
         this._element.querySelector('.card__title').textContent = this._title;
         this._element.querySelector('.card__like-counter').textContent = this._likes.length;
-    }
 
+        return this._element;
+        //должен краситься наш лайк
+    }
 
 }
 
 
+// import { openPopup } from "./utils";
+// import { popupDeleteCard } from "./modal";
+// import { deleteLike, putLike } from "./Api";
+// const galleryItemTemplate = document.querySelector('#gallery__item').content;
+// const popupViewPhoto = document.querySelector('.popup_feature_photo');
+// const photo = document.querySelector('.view-photo__image');
+// const caption = document.querySelector('.view-photo__caption');
 
 //показать лайки пользователя
 function containsClientLikes(likes, clientId) {
