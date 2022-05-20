@@ -1,6 +1,6 @@
 import '../pages/index.css';
 
-import { API_OPTIONS } from '../utils/constants'
+import { API_OPTIONS, CARD_CONFIG } from '../utils/constants'
 
 import Api from '../components/Api';
 
@@ -10,19 +10,37 @@ import Section from '../components/Section';
 
 const api = new Api(API_OPTIONS);
 
-api.getCards()
-.then(data => {
+Promise.all([
+  api.getUser(),
+  api.getCards()
+])
+.then(([user, cards]) => {
   const cardList = new Section({
-    data: data,
-    renderer: (item) => {
-      const card = new Card(item, '#gallery__item');
+    data: cards,
+    renderer: (cardDetail) => {
+      const card = new Card({
+        data: cardDetail,
+        userId: user._id,
+        rendererLike: (cardId) => {
+          api.putLike(cardId)
+          .then(data => card.renderLike({ countOfLikes: data.likes.length, liked: true }))
+          .catch(err => console.log(err))
+        },
+        rendererUnlike: (cardId) => {
+          api.deleteLike(cardId)
+          .then(data => card.renderLike({ countOfLikes: data.likes.length, liked: false }))
+          .catch(err => console.log(err))
+        }
+      }, CARD_CONFIG);
+      
       const cardElement = card.generate();
-      cardList.setItem(cardElement);
+      
+      cardList.addItem(cardElement);
+      
     }
-  },
-  '.gallery');
-
+  }, '.gallery');
+  
   cardList.renderItems();
 
 })
-.catch(e => { console.log(e) })
+.catch(err => console.log(err))
