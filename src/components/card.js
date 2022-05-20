@@ -64,13 +64,13 @@ export default class Card {
     });
   };
   
-  _renderUserLike () {
+  _activeUserLike () {
     if (this._likes.some(like => like._id === this._userId)) {
       this._element.querySelector(this._likeBtnSelector).classList.add(this._activeLikeClass)
     }
   }
 
-  _renderTrashFeature () {
+  _renderDeleteCardFeature () {
     if (this._owner !== this._userId) {
       this._element.querySelector(this._trashBtnSelector).remove()
     }
@@ -92,8 +92,8 @@ export default class Card {
     this._element.querySelector(this._imageSelector).src = this._image;
     this._element.querySelector(this._titleSelector).textContent = this._title;
     this._element.querySelector(this._likeCounterSelector).textContent = this._likes.length;
-    this._renderUserLike();
-    this._renderTrashFeature();
+    this._activeUserLike();
+    this._renderDeleteCardFeature();
     
     return this._element;
   }
