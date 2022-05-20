@@ -11,13 +11,24 @@ import Card from '../components/Card';
 import Section from '../components/Section';
 
 import UserInfo from '../components/UserInfo';
+
 import FormValidator from '../components/FormValidator';
+
+import Popup from '../components/Popup';
 
 const api = new Api(API_OPTIONS);
 const userInfo = new UserInfo({
     nameSelector: '.profile__name',
     aboutSelector: '.profile__about-myself'
 });
+
+//popup close test
+const popup = new Popup('.popup_feature_profile');
+popup.open();
+console.log('Popup was opened');
+popup.setEventListeners();
+debugger
+popup.close();
 
 
 const validatorFormProfile = new FormValidator(VALIDATOR_SETTINGS, '.form_type_profile')
