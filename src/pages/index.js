@@ -41,37 +41,37 @@ popupWithImage.setEventListeners();
 //edit profile >>>>>>>>>>
 
 const profilePopup = new PopupWithForm(
-  '.popup_feature_profile',
+    '.popup_feature_profile',
 
-  { handleSubmit: (inputsValue) => {
+    {
+        handleSubmit: (inputsValue) => {
+            profilePopup.renderLoading(true)
+            api.patchProfile(inputsValue)
+                //здесь нужно менять текст кнопки и дизейблить ее
+                .then(data => {
 
-  api.patchProfile(inputsValue)
-  //здесь нужно менять текст кнопки и дизейблить ее
 
-  .then(data => {
+                    userInfo.setUserInfo(data)
 
-
-    userInfo.setUserInfo(data)
-
-    profilePopup.close()
-
-  })
-  .catch(err => console.log(err))
-  },
-  handlePrefill: (form) => {
-    const profile = userInfo.getUserInfo();
-    form.elements.name.value = profile.name;
-    form.elements.about.value = profile.about;
-  }
-})
+                    profilePopup.close()
+                })
+                .catch(err => console.log(err))
+                .finally(() => profilePopup.renderLoading(false))
+        },
+        handlePrefill: (form) => {
+            const profile = userInfo.getUserInfo();
+            form.elements.name.value = profile.name;
+            form.elements.about.value = profile.about;
+        }
+    })
 
 profilePopup.setEventListeners();
 
 document.querySelector('.profile__button').addEventListener('click', () => {
 
-  profilePopup.prefillForm();
+    profilePopup.prefillForm();
 
-  profilePopup.open();
+    profilePopup.open();
 })
 
 //<<<<<<<<<<<<<<<<<<<<
@@ -101,7 +101,7 @@ Promise.all([
                             .catch(err => console.log(err))
                     },
                     handleImageClick: (link, name) => {
-                      popupWithImage.open(link, name)
+                        popupWithImage.open(link, name)
                     }
                 }, CARD_CONFIG);
 
