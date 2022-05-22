@@ -16,6 +16,8 @@ import FormValidator from '../components/FormValidator';
 
 import PopupWithImage from '../components/popupWithImage';
 
+import PopupWithForm from '../components/PopupWithForm';
+
 const api = new Api(API_OPTIONS);
 const userInfo = new UserInfo({
     nameSelector: '.profile__name',
@@ -35,6 +37,35 @@ validatorFormAvatar.enableValidation();
 const popupWithImage = new PopupWithImage('.popup_feature_photo');
 popupWithImage.setEventListeners();
 
+//popupFormTest >>>>>>
+
+const profilePopup = new PopupWithForm('.popup_feature_profile', (inputsValue) => {
+
+  api.patchProfile(inputsValue)
+  //здесь нужно менять текст кнопки и дизейблить ее
+
+  .then(data => {
+
+
+    userInfo.setUserInfo(data)
+
+    profilePopup.close()
+
+  })
+  .catch(err => console.log(err))
+
+  })
+
+profilePopup.setEventListeners();
+
+document.querySelector('.profile__button').addEventListener('click', () => {
+
+  //здесь нужно взять данные профиля и подставить в значенния инпутов
+
+  profilePopup.open();
+})
+
+//<<<<<<<<<<<<<<<<<<<<
 
 Promise.all([
         api.getUser(),

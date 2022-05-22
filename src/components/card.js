@@ -1,5 +1,5 @@
 
-export const removebleCard = {} //глобальная переменная для удаления карточки
+export const removebleCard = {} //глобальная переменная для удаления  карточки
 
 export default class Card {
   constructor({ data, userId, rendererLike, rendererUnlike, handleImageClick }, config) {

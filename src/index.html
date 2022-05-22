@@ -35,7 +35,7 @@
             <form class="form form_type_avatar popup__form" name="avatar" autocomplete="off" novalidate>
                 <h2 class="form__heading">Обновить аватар</h2>
                 <label class="form__field">
-          <input class="form__input form__input_el_avatar-url popup__input" type="url" name="avatar-url" id="avatar-url-input" required placeholder="Ссылка на изображение">
+          <input class="form__input form__input_el_avatar-url popup__input" type="url" name="avatar" id="avatar-url-input" required placeholder="Ссылка на изображение">
           <span class="form__input-error avatar-url-input-error popup__error"></span>
         </label>
                 <button class="form__btn popup__button" type="submit">Сохранить</button>
@@ -48,11 +48,11 @@
             <form class="form form_type_profile popup__form" name="profile" autocomplete="off" novalidate>
                 <h2 class="form__heading">Редактировать профиль</h2>
                 <label class="form__field">
-          <input class="form__input form__input_el_name popup__input" type="text" name="name" id="name-input" required minlength="2" maxlength="40" placeholder="Имя" value="Жак-Ив Кусто">
+          <input class="form__input form__input_el_name popup__input" type="text" name="name" id="name-input" required minlength="2" maxlength="40" placeholder="Имя">
           <span class="form__input-error form__input-error_active name-input-error popup__error">Вы пропустили это поле.</span>
         </label>
                 <label class="form__field">
-          <input class="form__input form__input_el_myself popup__input" type="text" name="myself" id="myself-input" required minlength="2" maxlength="200" placeholder="О себе" value="Исследователь океана">
+          <input class="form__input form__input_el_myself popup__input" type="text" name="about" id="myself-input" required minlength="2" maxlength="200" placeholder="О себе">
           <span class="form__input-error form__input-error_active myself-input-error popup__error">Введите адрес сайта.</span>
         </label>
                 <button class="form__btn popup__button" type="submit">Сохранить</button>
@@ -65,11 +65,11 @@
             <form class="form form_type_place popup__form" name="place" autocomplete="off" novalidate>
                 <h2 class="form__heading">Новое место</h2>
                 <label class="form__field">
-          <input class="form__input form__input_el_name popup__input" type="text" name="place-name" id="place-name-input" required minlength="2" maxlength="30" placeholder="Название">
+          <input class="form__input form__input_el_name popup__input" type="text" name="name" id="place-name-input" required minlength="2" maxlength="30" placeholder="Название">
           <span class="form__input-error place-name-input-error popup__error"></span>
         </label>
                 <label class="form__field">
-          <input class="form__input form__input_el_url popup__input" type="url" name="place-url" id="place-url-input" required placeholder="Ссылка на картинку">
+          <input class="form__input form__input_el_url popup__input" type="url" name="link" id="place-url-input" required placeholder="Ссылка на картинку">
           <span class="form__input-error place-url-input-error popup__error"></span>
         </label>
                 <button class="form__btn popup__button" type="submit">Создать</button>
