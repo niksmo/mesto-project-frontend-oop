@@ -39,7 +39,9 @@ popupWithImage.setEventListeners();
 
 //popupFormTest >>>>>>
 
-const profilePopup = new PopupWithForm('.popup_feature_profile', (inputsValue) => {
+const profilePopup = new PopupWithForm(
+  '.popup_feature_profile',
+  (inputsValue) => { //колбэк сабмита
 
   api.patchProfile(inputsValue)
   //здесь нужно менять текст кнопки и дизейблить ее
@@ -54,13 +56,19 @@ const profilePopup = new PopupWithForm('.popup_feature_profile', (inputsValue) =
   })
   .catch(err => console.log(err))
 
-  })
+  },
+  (form) => { //колбэк предзаполнения
+    const profile = userInfo.getUserInfo();
+    form.elements.name.value = profile.name;
+    form.elements.about.value = profile.about;
+  }
+  )
 
 profilePopup.setEventListeners();
 
 document.querySelector('.profile__button').addEventListener('click', () => {
 
-  //здесь нужно взять данные профиля и подставить в значенния инпутов
+  profilePopup.preparationForm(); //здесь нужно взять данные профиля и подставить в значенния инпутов
 
   profilePopup.open();
 })
