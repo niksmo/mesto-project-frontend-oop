@@ -3,10 +3,10 @@ import { popups } from "../utils/constants";
 export default class Popup {
     constructor(selector) {
         this._selector = selector;
-        this.popup = document.querySelector(this._selector);
+        this._popup = document.querySelector(this._selector);
     };
 
-    _handleEscClose(evt) {
+    _handleEscClose = (evt) => {
         if (evt.key === 'Escape') {
             this.close();
         }
@@ -15,29 +15,23 @@ export default class Popup {
 
 
     open() {
-        this.popup.classList.add('popup_opened');
-        this.popup.addEventListener('keydown', this._handleEscClose);
+        this._popup.classList.add('popup_opened');
+        document.addEventListener('keydown', this._handleEscClose);
 
 
     };
 
     close() {
-        this.popup.classList.remove('popup_opened');
-        this.popup.removeEventListener('keydown', this._handleEscClose);
+        this._popup.classList.remove('popup_opened');
+        document.removeEventListener('keydown', this._handleEscClose);
     };
 
     setEventListeners() {
-        popups.forEach((popup) => {
-                popup.addEventListener('mousedown', (evt) => {
-                    if (evt.target.classList.contains('popup_opened')) {
-                        this.close()
-                    } else if (evt.target.classList.contains('popup__close')) {
-                        this.close()
-                    }
-                })
+        this._popup.addEventListener('mousedown', (evt) => {
+            if ((evt.target.classList.contains('popup_opened')) || (evt.target.classList.contains('popup__close'))) {
+                this.close()
             }
-
-        )
+        });
     };
 
 }

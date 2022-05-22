@@ -25,10 +25,9 @@ const userInfo = new UserInfo({
 //popup close test
 const popup = new Popup('.popup_feature_profile');
 popup.open();
-console.log('Popup was opened');
+console.log('Popup was opened by a function');
 popup.setEventListeners();
-debugger
-popup.close();
+
 
 
 const validatorFormProfile = new FormValidator(VALIDATOR_SETTINGS, '.form_type_profile')
