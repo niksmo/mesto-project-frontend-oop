@@ -11,7 +11,12 @@ import Card from '../components/Card';
 import Section from '../components/Section';
 
 import UserInfo from '../components/UserInfo';
+
 import FormValidator from '../components/FormValidator';
+
+import Popup from '../components/Popup';
+
+import PopupWithImage from '../components/popupWithImage';
 
 const api = new Api(API_OPTIONS);
 const userInfo = new UserInfo({
