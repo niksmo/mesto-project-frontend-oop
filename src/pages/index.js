@@ -14,8 +14,6 @@ import UserInfo from '../components/UserInfo';
 
 import FormValidator from '../components/FormValidator';
 
-import Popup from '../components/Popup';
-
 import PopupWithImage from '../components/popupWithImage';
 
 const api = new Api(API_OPTIONS);
@@ -33,6 +31,9 @@ validatorFormCard.enableValidation();
 
 const validatorFormAvatar = new FormValidator(VALIDATOR_SETTINGS, '.form_type_avatar');
 validatorFormAvatar.enableValidation();
+
+const popupWithImage = new PopupWithImage('.popup_feature_photo');
+popupWithImage.setEventListeners();
 
 
 Promise.all([
@@ -58,6 +59,9 @@ Promise.all([
                         api.deleteLike(cardId)
                             .then(data => card.renderLike({ countOfLikes: data.likes.length, liked: false }))
                             .catch(err => console.log(err))
+                    },
+                    handleImageClick: (link, name) => {
+                      popupWithImage.open(link, name)
                     }
                 }, CARD_CONFIG);
 
