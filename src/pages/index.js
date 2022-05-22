@@ -37,11 +37,13 @@ validatorFormAvatar.enableValidation();
 const popupWithImage = new PopupWithImage('.popup_feature_photo');
 popupWithImage.setEventListeners();
 
-//popupFormTest >>>>>>
+
+//edit profile >>>>>>>>>>
 
 const profilePopup = new PopupWithForm(
   '.popup_feature_profile',
-  (inputsValue) => { //колбэк сабмита
+
+  { handleSubmit: (inputsValue) => {
 
   api.patchProfile(inputsValue)
   //здесь нужно менять текст кнопки и дизейблить ее
@@ -55,20 +57,19 @@ const profilePopup = new PopupWithForm(
 
   })
   .catch(err => console.log(err))
-
   },
-  (form) => { //колбэк предзаполнения
+  handlePrefill: (form) => {
     const profile = userInfo.getUserInfo();
     form.elements.name.value = profile.name;
     form.elements.about.value = profile.about;
   }
-  )
+})
 
 profilePopup.setEventListeners();
 
 document.querySelector('.profile__button').addEventListener('click', () => {
 
-  profilePopup.preparationForm(); //здесь нужно взять данные профиля и подставить в значенния инпутов
+  profilePopup.prefillForm();
 
   profilePopup.open();
 })
