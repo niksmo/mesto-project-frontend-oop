@@ -1,5 +1,3 @@
-import { popups } from "../utils/constants";
-
 export default class Popup {
     constructor(selector) {
         this._selector = selector;

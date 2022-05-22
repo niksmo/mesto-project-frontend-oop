@@ -29,5 +29,3 @@ export const VALIDATOR_SETTINGS = {
     inputErrorClass: 'popup__input_type_error',
     errorClass: 'popup__error_visible'
 };
-
-export const popups = document.querySelectorAll('.popup');

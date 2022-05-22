@@ -16,18 +16,13 @@ import FormValidator from '../components/FormValidator';
 
 import Popup from '../components/Popup';
 
+import PopupWithImage from '../components/popupWithImage';
+
 const api = new Api(API_OPTIONS);
 const userInfo = new UserInfo({
     nameSelector: '.profile__name',
     aboutSelector: '.profile__about-myself'
 });
-
-//popup close test
-const popup = new Popup('.popup_feature_profile');
-popup.open();
-console.log('Popup was opened by a function');
-popup.setEventListeners();
-
 
 
 const validatorFormProfile = new FormValidator(VALIDATOR_SETTINGS, '.form_type_profile')
