@@ -38,6 +38,7 @@ const popupWithImage = new PopupWithImage('.popup_feature_photo');
 popupWithImage.setEventListeners();
 
 
+
 //edit profile >>>>>>>>>>
 
 const profilePopup = new PopupWithForm(
@@ -75,6 +76,56 @@ document.querySelector('.profile__button').addEventListener('click', () => {
 })
 
 //<<<<<<<<<<<<<<<<<<<<
+
+//add card >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+const addCardPopup = new PopupWithForm(
+    '.popup_feature_place', {
+        handleSubmit: (inputsValue) => {
+            addCardPopup.renderLoading(true);
+            api.putNewCard(inputsValue)
+                .then(data => {
+                    const newCard = new Section({
+                        data: [data],
+                        renderer: (cardDetail) => {
+                            const card = new Card({
+                                    data: cardDetail,
+                                    userId: data.owber._id,
+                                    rendererLike: (cardId) => {
+                                        api.putLike(cardId)
+                                            .then(data => card.renderLike({ countOfLikes: data.likes.length, liked: true }))
+                                            .catch(err => console.log(err))
+                                    },
+                                    rendererUnlike: (cardId) => {
+                                        api.deleteLike(cardId)
+                                            .then(data => card.renderLike({ countOfLikes: data.likes.length, liked: false }))
+                                            .catch(err => console.log(err))
+                                    },
+                                    handleImageClick: (link, name) => {
+                                        popupWithImage.open(link, name)
+                                    }
+                                }, CARD_CONFIG
+
+                            )
+                            const cardElement = card.generate();
+
+                            newCard.addItem(cardElement);
+
+                        }
+                    }, '.gallery');
+
+                    newCard.renderItems()
+                    addCardPopup.close()
+                })
+                .catch(err => console.log(err))
+                .finally(() => addCardPopup.renderLoading(false))
+        }
+    }
+)
+
+addCardPopup.setEventListeners();
+document.querySelector('.button_type_add').addEventListener('click', () => addCardPopup.open())
+
+
 
 Promise.all([
         api.getUser(),
