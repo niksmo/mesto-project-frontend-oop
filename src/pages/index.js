@@ -1,6 +1,6 @@
 import '../pages/index.css';
 
-import { API_OPTIONS, CARD_CONFIG, VALIDATOR_SETTINGS } from '../utils/constants'
+import { API_OPTIONS, CARD_CONFIG, VALIDATOR_SETTINGS, POPUP_WITH_FORM_CONFIG } from '../utils/constants'
 
 import { makeVisible } from '../utils/utils';
 
@@ -38,16 +38,19 @@ const popupWithImage = new PopupWithImage('.popup_feature_photo');
 popupWithImage.setEventListeners();
 
 const popupWithCardDelete = new PopupWithForm('.popup_feature_delete', {
+  config: POPUP_WITH_FORM_CONFIG,
   handleSubmit: () => {
 
     const deletingElement = document.querySelector(`[data-card-id='${sessionStorage.getItem('deletingCard')}']`)
 
+    popupWithCardDelete.renderLoading(true, 'Удаление...')
     api.deleteCard(sessionStorage.getItem('deletingCard'))
     .then(res => {
       deletingElement.remove();
       popupWithCardDelete.close();
     })
     .catch(err => console.log(err))
+    .finally(() => setTimeout(() => popupWithCardDelete.renderLoading(false, 'Да'), 1000) )
   }
 });
 
@@ -57,8 +60,9 @@ popupWithCardDelete.setEventListeners();
 //edit profile >>>>>>>>>>>>>>>>>>>>>>>
 const profilePopup = new PopupWithForm(
   '.popup_feature_profile',{
+    config: POPUP_WITH_FORM_CONFIG,
     handleSubmit: (inputsValue) => {
-      profilePopup.renderLoading(true)
+      profilePopup.renderLoading(true, 'Сохранение...')
       api.patchProfile(inputsValue)
       .then(data => {
         userInfo.setUserInfo(data)
@@ -66,7 +70,7 @@ const profilePopup = new PopupWithForm(
       })
       .catch(err => console.log(err))
       .finally(() => {
-        setTimeout(() => { profilePopup.renderLoading(false) }, 1000)
+        setTimeout(() => { profilePopup.renderLoading(false, 'Сохранить') }, 1000)
       })
     },
     handlePrefill: (form) => {
@@ -88,8 +92,9 @@ const profilePopup = new PopupWithForm(
   //add card >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   const addCardPopup = new PopupWithForm(
     '.popup_feature_place', {
+      config: POPUP_WITH_FORM_CONFIG,
       handleSubmit: (inputsValue) => {
-        addCardPopup.renderLoading(true);
+        addCardPopup.renderLoading(true, 'Сохранение...');
 
         api.putNewCard(inputsValue)
         .then(data => {
@@ -128,7 +133,7 @@ const profilePopup = new PopupWithForm(
         })
         .catch(err => console.log(err))
         .finally(() => {
-          addCardPopup.renderLoading(false);
+          addCardPopup.renderLoading(false, 'Создать');
           validatorFormCard.enableValidation();
         })
       }

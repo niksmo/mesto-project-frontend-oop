@@ -1,16 +1,18 @@
 import Popup from './Popup';
 
 export default class PopupWithForm extends Popup {
-  constructor(selector, { handleSubmit, handlePrefill }) {
+  constructor(selector, { config: { formSelector, inputSelector, submitButtonSelector }, handleSubmit, handlePrefill }) {
     super(selector);
-    this._form = this._popup.querySelector('.popup__form');
+    this._form = this._popup.querySelector(formSelector);
+    this._formSubmitButton = this._form.querySelector(submitButtonSelector);
+    this._inputSelector = inputSelector;
     this._handleSubmit = handleSubmit;
     this._handlePrefill = handlePrefill;
   }
 
   _getInputValues() {
     const inputsValue = {}
-    this._form.querySelectorAll('.form__input').forEach(input => {
+    this._form.querySelectorAll(this._inputSelector).forEach(input => {
       return inputsValue[input.name] = input.value;
     })
     return inputsValue
@@ -29,26 +31,16 @@ export default class PopupWithForm extends Popup {
     })
   }
 
-  renderLoading(isLoading) {
-    const button = this._form.querySelector('.popup__button')
-    if (this._form.classList.contains('form_type_place')) {
-      if (isLoading) {
-        button.disabled = true;
-        button.textContent = 'Сохранение...'
-      } else {
-        button.textContent = 'Создать';
-        button.disabled = false;
-      }
+
+  renderLoading(isLoading, buttonText) {
+    if (isLoading) {
+      this._formSubmitButton.disabled = true;
+      this._formSubmitButton.textContent = buttonText;
     } else {
-      if (isLoading) {
-        button.disabled = true;
-        button.textContent = 'Сохранение...'
-      } else {
-        button.textContent = 'Сохранить';
-        button.disabled = false;
-      }
-    };
-  };
+      this._formSubmitButton.disabled = false;
+      this._formSubmitButton.textContent = buttonText;
+    }
+  }
 
   close() {
     super.close();

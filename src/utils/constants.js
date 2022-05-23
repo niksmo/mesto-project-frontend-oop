@@ -24,3 +24,9 @@ export const VALIDATOR_SETTINGS = {
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__error_visible'
 };
+
+export const POPUP_WITH_FORM_CONFIG = {
+  formSelector: '.popup__form',
+  inputSelector: '.form__input',
+  submitButtonSelector: '.popup__button',
+}
