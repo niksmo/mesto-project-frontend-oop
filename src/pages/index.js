@@ -42,22 +42,18 @@ popupWithImage.setEventListeners();
 //edit profile >>>>>>>>>>
 
 const profilePopup = new PopupWithForm(
-    '.popup_feature_profile',
-
-    {
+    '.popup_feature_profile',{
         handleSubmit: (inputsValue) => {
-            profilePopup.renderLoading(true)
-            api.patchProfile(inputsValue)
-                //здесь нужно менять текст кнопки и дизейблить ее
-                .then(data => {
-
-
-                    userInfo.setUserInfo(data)
-
-                    profilePopup.close()
-                })
-                .catch(err => console.log(err))
-                .finally(() => profilePopup.renderLoading(false))
+          profilePopup.renderLoading(true)
+          api.patchProfile(inputsValue)
+          .then(data => {
+          userInfo.setUserInfo(data)
+          profilePopup.close()
+          })
+          .catch(err => console.log(err))
+          .finally(() => {
+            setTimeout(() => { profilePopup.renderLoading(false) }, 1000)
+          })
         },
         handlePrefill: (form) => {
             const profile = userInfo.getUserInfo();
@@ -69,10 +65,8 @@ const profilePopup = new PopupWithForm(
 profilePopup.setEventListeners();
 
 document.querySelector('.profile__button').addEventListener('click', () => {
-
-    profilePopup.prefillForm();
-
-    profilePopup.open();
+  profilePopup.prefillForm();
+  profilePopup.open();
 })
 
 //<<<<<<<<<<<<<<<<<<<<
@@ -84,12 +78,10 @@ const addCardPopup = new PopupWithForm(
             addCardPopup.renderLoading(true);
 
             api.putNewCard(inputsValue)
-
             .then(data => {
                 const newCard = new Section({
                     data: [data],
                     renderer: (cardDetail) => {
-                        // debugger
                         const card = new Card({
                                 data: cardDetail,
                                 userId: cardDetail.owner._id,
@@ -119,10 +111,12 @@ const addCardPopup = new PopupWithForm(
                 newCard.renderItems();
                 addCardPopup.close();
             })
-
             .catch(err => console.log(err))
-                .finally(() => addCardPopup.renderLoading(false))
-        }
+            .finally(() => {
+              addCardPopup.renderLoading(false);
+              validatorFormCard.enableValidation();
+            })
+          }
     }
 )
 addCardPopup.setEventListeners();
