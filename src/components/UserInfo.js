@@ -1,7 +1,8 @@
 export default class UserInfo {
-    constructor({ nameSelector, aboutSelector }) {
+    constructor({ nameSelector, aboutSelector, avatarSelector }) {
         this._profileNameSelector = nameSelector;
         this._profileAboutSelector = aboutSelector;
+        this._avatarButtonSelector = avatarSelector;
     };
 
     getUserInfo() {
@@ -20,5 +21,11 @@ export default class UserInfo {
         this._profileNameElement.textContent = name;
         this._profileAboutElement.textContent = about;
     };
+
+    setUserAvatar(link) {
+        this._avatarButton = document.querySelector(this._avatarButtonSelector);
+        this._avatarButton.style.backgroundImage = `url(${link})`;
+        debugger
+    }
 
 }
