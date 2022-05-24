@@ -25,7 +25,6 @@ export default class UserInfo {
     setUserAvatar(link) {
         this._avatarButton = document.querySelector(this._avatarButtonSelector);
         this._avatarButton.style.backgroundImage = `url(${link})`;
-        debugger
     }
 
 }

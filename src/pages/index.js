@@ -52,7 +52,7 @@ const popupWithCardDelete = new PopupWithForm('.popup_feature_delete', {
                 popupWithCardDelete.close();
             })
             .catch(err => console.log(err))
-            .finally(() => setTimeout(() => popupWithCardDelete.renderLoading(false, 'Да'), 1000))
+            .finally(() => setTimeout(() => popupWithCardDelete.renderLoading(false, 'Да'), 200))
     }
 });
 
@@ -72,7 +72,8 @@ const profilePopup = new PopupWithForm(
                 })
                 .catch(err => console.log(err))
                 .finally(() => {
-                    setTimeout(() => { profilePopup.renderLoading(false, 'Сохранить') }, 1000)
+                    setTimeout(() => { profilePopup.renderLoading(false, 'Сохранить') }, 200);
+                    profilePopup.enableValidation();
                 })
         },
         handlePrefill: (form) => {
@@ -146,6 +147,32 @@ addCardPopup.setEventListeners();
 
 document.querySelector('.button_type_add').addEventListener('click', () => addCardPopup.open())
     //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< add card /
+
+
+// edit profile avatar >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+const editAvatarPopup = new PopupWithForm('.popup_feature_avatar', {
+    config: POPUP_WITH_FORM_CONFIG,
+    handleSubmit: (inputsValue) => {
+        editAvatarPopup.renderLoading(true, 'Cохранение...');
+        api.updAvatar(inputsValue)
+            .then(res => {
+                userInfo.setUserAvatar(res.avatar);
+                editAvatarPopup.close();
+            })
+            .catch(err => console.log(err))
+            .finally(() => {
+                editAvatarPopup.renderLoading(false, 'Сохранить');
+                validatorFormAvatar.enableValidation();
+            })
+    }
+
+})
+
+editAvatarPopup.setEventListeners();
+
+document.querySelector('.profile__avatar').addEventListener('click', () => editAvatarPopup.open());
+
+
 
 
 //loading elements on page from server >>>>>>>>>>>>>>>>>>>>>
