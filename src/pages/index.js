@@ -93,6 +93,7 @@ Promise.all([
 //deleting card
 const popupWithCardDelete = new PopupWithForm('.popup_feature_delete', {
   config: POPUP_WITH_FORM_CONFIG,
+  handleFormReset: () => {},
   handleSubmit: () => {
     const deletingElement = document.querySelector(`[data-card-id='${sessionStorage.getItem('deletingCard')}']`)
     popupWithCardDelete.renderLoading(true, 'Удаление...')
@@ -155,7 +156,6 @@ const addCardPopup = new PopupWithForm('.popup_feature_place', {
     .catch(err => console.log(err))
     .finally(() => {
       addCardPopup.renderLoading(false, 'Создать');
-      validatorFormCard.enableValidation();
     })
   }
 })
@@ -180,7 +180,6 @@ const profilePopup = new PopupWithForm('.popup_feature_profile', {
     .catch(err => console.log(err))
     .finally(() => {
       setTimeout(() => { profilePopup.renderLoading(false, 'Сохранить') }, 200);
-      profilePopup.enableValidation();
     })
   },
   handlePrefill: (form) => {
@@ -213,7 +212,6 @@ const editAvatarPopup = new PopupWithForm('.popup_feature_avatar', {
     .catch(err => console.log(err))
     .finally(() => {
       editAvatarPopup.renderLoading(false, 'Сохранить');
-      validatorFormAvatar.enableValidation();
     })
   }
 })

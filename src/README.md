@@ -1,5 +1,10 @@
 # Проект: Место
 
+Контрибюторы:
+https://github.com/lev-stas (lev-stas@yandex.ru)
+https://github.com/NikolaySmolov (n.smolov@yandex.ru)
+
+
 Одностраничный сайт
 
 Раработан по макерту:
