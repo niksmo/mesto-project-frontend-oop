@@ -123,7 +123,6 @@ popupWithCardDelete.setEventListeners();
 //add card
 const addCardPopup = new PopupWithForm('.popup_feature_place', {
   config: POPUP_WITH_FORM_CONFIG,
-  handleFormReset: () => validatorFormCard.resetValidation(),
   handleSubmit: (inputsValue) => {
     addCardPopup.renderLoading(true, 'Сохранение...');
 
@@ -142,13 +141,15 @@ const addCardPopup = new PopupWithForm('.popup_feature_place', {
 
 addCardPopup.setEventListeners();
 
-document.querySelector('.button_type_add').addEventListener('click', () => addCardPopup.open())
+document.querySelector('.button_type_add').addEventListener('click', () => {
+  validatorFormCard.resetValidation();
+  addCardPopup.open();
+})
 
 
 //edit profile
 const profilePopup = new PopupWithForm('.popup_feature_profile', {
   config: POPUP_WITH_FORM_CONFIG,
-  handleFormReset: () => validatorFormProfile.resetValidation(),
   handleSubmit: (inputsValue) => {
     profilePopup.renderLoading(true, 'Сохранение...')
     api.patchProfile(inputsValue)
@@ -171,6 +172,7 @@ const profilePopup = new PopupWithForm('.popup_feature_profile', {
 profilePopup.setEventListeners();
 
 document.querySelector('.profile__button').addEventListener('click', () => {
+  validatorFormProfile.resetValidation();
   profilePopup.prefillForm();
   profilePopup.open();
 })
@@ -179,7 +181,6 @@ document.querySelector('.profile__button').addEventListener('click', () => {
 // edit profile avatar
 const editAvatarPopup = new PopupWithForm('.popup_feature_avatar', {
   config: POPUP_WITH_FORM_CONFIG,
-  handleFormReset: () => validatorFormAvatar.resetValidation(),
   handleSubmit: (inputsValue) => {
     editAvatarPopup.renderLoading(true, 'Cохранение...');
     api.updAvatar(inputsValue)
@@ -196,4 +197,7 @@ const editAvatarPopup = new PopupWithForm('.popup_feature_avatar', {
 
 editAvatarPopup.setEventListeners();
 
-document.querySelector('.profile__avatar').addEventListener('click', () => editAvatarPopup.open());
+document.querySelector('.profile__avatar').addEventListener('click', () => {
+  validatorFormAvatar.resetValidation();
+  editAvatarPopup.open();
+});

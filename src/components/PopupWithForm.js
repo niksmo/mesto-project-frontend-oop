@@ -1,12 +1,11 @@
 import Popup from './Popup';
 
 export default class PopupWithForm extends Popup {
-  constructor(selector, { config: { formSelector, inputSelector, submitButtonSelector }, handleFormReset, handleSubmit, handlePrefill }) {
+  constructor(selector, { config: { formSelector, inputSelector, submitButtonSelector }, handleSubmit, handlePrefill }) {
     super(selector);
     this._form = this._popup.querySelector(formSelector);
     this._formSubmitButton = this._form.querySelector(submitButtonSelector);
     this._inputSelector = inputSelector;
-    this._handleFormReset = handleFormReset;
     this._handleSubmit = handleSubmit;
     this._handlePrefill = handlePrefill;
   }
@@ -45,7 +44,6 @@ export default class PopupWithForm extends Popup {
 
   close() {
     super.close();
-    this._handleFormReset();
     this._form.reset();
   }
 }
