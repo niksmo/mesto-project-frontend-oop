@@ -87,7 +87,6 @@ Promise.all([
   sessionStorage.setItem('userId', user._id);
 
   userInfo.setUserInfo(user);
-  userInfo.setUserAvatar(user.avatar);
   makeVisible(document.querySelector('.profile__info'));
 
   cardList.renderItems(cards);
@@ -184,8 +183,8 @@ const editAvatarPopup = new PopupWithForm('.popup_feature_avatar', {
   handleSubmit: (inputsValue) => {
     editAvatarPopup.renderLoading(true, 'Cохранение...');
     api.updAvatar(inputsValue)
-    .then(res => {
-      userInfo.setUserAvatar(res.avatar);
+    .then(data => {
+      userInfo.setUserInfo(data);
       editAvatarPopup.close();
     })
     .catch(err => console.log(err))

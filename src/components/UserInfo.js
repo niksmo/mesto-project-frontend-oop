@@ -13,12 +13,9 @@ export default class UserInfo {
         return userInfo;
     };
 
-    setUserInfo({ name, about }) {
+    setUserInfo({ name, about, avatar }) {
         this._profileNameElement.textContent = name;
         this._profileAboutElement.textContent = about;
+        this._avatarButton.style.backgroundImage = `url(${avatar})`;
     };
-
-    setUserAvatar(link) {
-        this._avatarButton.style.backgroundImage = `url(${link})`;
-    }
 }
