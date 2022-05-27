@@ -103,13 +103,12 @@ popupWithImage.setEventListeners();
 //deleting card
 const popupWithCardDelete = new PopupWithForm('.popup_feature_delete', {
   config: POPUP_WITH_FORM_CONFIG,
-  handleFormReset: () => {},
   handleSubmit: () => {
     const deletingElement = document.querySelector(`[data-card-id='${sessionStorage.getItem('deletingCard')}']`)
     popupWithCardDelete.renderLoading(true, 'Удаление...')
     api.deleteCard(sessionStorage.getItem('deletingCard'))
-    .then(() => {
-      deletingElement.remove();
+    .then((res) => {
+      cardList.removeItem(deletingElement);
       popupWithCardDelete.close();
     })
     .catch(err => console.log(err))
@@ -161,11 +160,6 @@ const profilePopup = new PopupWithForm('.popup_feature_profile', {
     .finally(() => {
       setTimeout(() => { profilePopup.renderLoading(false, 'Сохранить') }, 200);
     })
-  },
-  handlePrefill: (form) => {
-    const profile = userInfo.getUserInfo();
-    form.elements.name.value = profile.name;
-    form.elements.about.value = profile.about;
   }
 })
 
@@ -173,7 +167,7 @@ profilePopup.setEventListeners();
 
 document.querySelector('.profile__button').addEventListener('click', () => {
   validatorFormProfile.resetValidation();
-  profilePopup.prefillForm();
+  profilePopup.setInputValues(userInfo.getUserInfo());
   profilePopup.open();
 })
 

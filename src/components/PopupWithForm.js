@@ -1,13 +1,13 @@
 import Popup from './Popup';
 
 export default class PopupWithForm extends Popup {
-  constructor(selector, { config: { formSelector, inputSelector, submitButtonSelector }, handleSubmit, handlePrefill }) {
+  constructor(selector, { config: { formSelector, inputSelector, submitButtonSelector }, handleSubmit }) {
     super(selector);
     this._form = this._popup.querySelector(formSelector);
     this._formSubmitButton = this._form.querySelector(submitButtonSelector);
     this._inputSelector = inputSelector;
+    this._inputList = this._form.querySelectorAll(this._inputSelector);
     this._handleSubmit = handleSubmit;
-    this._handlePrefill = handlePrefill;
   }
 
   _getInputValues() {
@@ -18,8 +18,10 @@ export default class PopupWithForm extends Popup {
     return inputsValue
   }
 
-  prefillForm() {
-    this._handlePrefill(this._form);
+  setInputValues(data) {
+    this._inputList.forEach(input => {
+      input.value = data[input.name];
+    })
   }
 
   setEventListeners() {
