@@ -30,7 +30,7 @@ export default class Card {
     };
 
     _isLiked() {
-        return this._element.querySelector(this._likeBtnSelector).classList.contains(this._activeLikeClass);
+        return this._likeBtn.classList.contains(this._activeLikeClass);
     };
 
     _handleLikeClick() {
@@ -42,49 +42,53 @@ export default class Card {
     };
 
     _setEventListeners() {
-        this._element.querySelector(this._likeBtnSelector).addEventListener('click', () => {
+        this._likeBtn.addEventListener('click', () => {
             this._handleLikeClick();
         });
 
-        this._element.querySelector(this._imageSelector).addEventListener('click', () => {
+        this._cardImage.addEventListener('click', () => {
             this._handleImageClick(this._image, this._title);
         });
 
-        this._element.querySelector(this._trashBtnSelector).addEventListener('click', () => {
+        this._trashBtn.addEventListener('click', () => {
             this._handleDeleteClick(this._cardId);
         });
     };
 
     _activeUserLike() {
         if (this._likes.some(like => like._id === this._userId)) {
-            this._element.querySelector(this._likeBtnSelector).classList.add(this._activeLikeClass)
+            this._likeBtn.classList.add(this._activeLikeClass)
         }
     }
 
     _renderDeleteCardFeature() {
         if (this._owner !== this._userId) {
-            this._element.querySelector(this._trashBtnSelector).remove()
+            this._trashBtn.remove()
         }
     }
 
     renderLike({ countOfLikes, liked }) {
         if (liked) {
-            this._element.querySelector(this._likeBtnSelector).classList.add(this._activeLikeClass);
+            this._likeBtn.classList.add(this._activeLikeClass);
         } else {
-            this._element.querySelector(this._likeBtnSelector).classList.remove(this._activeLikeClass);
+            this._likeBtn.classList.remove(this._activeLikeClass);
         }
 
-        this._element.querySelector(this._likeCounterSelector).textContent = countOfLikes;
+        this._likesNumber.textContent = countOfLikes;
     }
 
     generate() {
         this._element = this._getElement();
+        this._likeBtn = this._element.querySelector(this._likeBtnSelector);
+        this._cardImage = this._element.querySelector(this._imageSelector);
+        this._likesNumber = this._element.querySelector(this._likeCounterSelector);
+        this._trashBtn = this._element.querySelector(this._trashBtnSelector);
         this._setEventListeners();
         this._element.dataset.cardId = this._cardId;
-        this._element.querySelector(this._imageSelector).src = this._image;
-        this._element.querySelector(this._imageSelector).alt = this._title;
+        this._cardImage.src = this._image;
+        this._cardImage.alt = this._title;
         this._element.querySelector(this._titleSelector).textContent = this._title;
-        this._element.querySelector(this._likeCounterSelector).textContent = this._likes.length;
+        this._likesNumber.textContent = this._likes.length;
         this._activeUserLike();
         this._renderDeleteCardFeature();
         return this._element;
