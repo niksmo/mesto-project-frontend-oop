@@ -1,5 +1,10 @@
 # Проект: Место
 
+Контрибюторы:
+https://github.com/lev-stas (lev-stas@yandex.ru)
+https://github.com/NikolaySmolov (n.smolov@yandex.ru)
+
+
 Одностраничный сайт
 
 Раработан по макерту:
@@ -11,5 +16,7 @@
 Grid
 Flexbox
 Кастомизирован чекбокс в карточках
+
+Код написан в соответствии с парадигмой объектно-ориентированного прогрмаммирования.
 
 * [Ссылка на страницу](https://nikolaysmolov.github.io/mesto-project/index.html)
